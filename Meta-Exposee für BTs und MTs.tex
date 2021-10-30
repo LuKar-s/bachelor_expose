@@ -293,21 +293,33 @@
 %---------------------------------
 \section{Einleitung}
 
-Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien sogenannter \glqq Cloud-Native-Architektur\grqq{} und sind damit so gestaltet, dass sie skalierbar, resilient, administrierbar, observierbar und automatisiert sind \cite{Lee:2021}. Allerdings ist es oft nicht möglich diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse laufen bereits in Systemen bei denen diese architektonischen Erkenntisse noch keine Anwendung fanden. Eine große Herausforderung vieler Unternehmen ist es heute, ihre bestehenden Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der moderne Prinzipen angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, in welchem die Startnext-Plattform von der bestehenden, klassichen Architektur schrittweise in eine cloud-native Infrastrukur überführt wird und die Vorteile dieser Technologie effektiv nutzt. Zudem werden die erarbeiteten Maßnahmen auch praktisch umgesetzt, diskutiert und der Erfolg der Maßnahmen bewertet.
+Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien sogenannter \glqq Cloud-Native-Architektur\grqq{} 
+und sind damit so gestaltet, dass sie skalierbar, resilient, administrierbar, observierbar und automatisiert sind \cite{Lee:2021}. 
+Allerdings ist es oft nicht möglich diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse 
+laufen bereits in Systemen bei denen diese architektonischen Erkenntisse noch keine Anwendung fanden. Eine große Herausforderung vieler 
+Unternehmen ist es heute, ihre bestehenden Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der 
+moderne Prinzipen angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur 
+zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, in welchem die Startnext-Plattform von der bestehenden, klassichen Architektur 
+schrittweise in eine cloud-native Infrastrukur überführt wird und die Vorteile dieser Technologie effektiv nutzt. Zudem werden die erarbeiteten 
+Maßnahmen auch praktisch umgesetzt, diskutiert und der Erfolg der Maßnahmen bewertet.
 
 %---------------------------------
 % PROBLEMSTELLUNG UND LÖSUNGSANSATZ
 %---------------------------------
 \section{\label{sec:problem_loesung}Problemstellung und Lösungsansatz}
-Klassiche Bereitstellung von Software über selbst- oder fremdgehostete Server schränkt die Anpassungsmöglichkeiten bei Bedarf an mehr Rechenleistung ,weitere Rechen-Instanzen oder Serverstandorte stark ein und lässt Änderungen an der Infrastruktur nur sehr träge zu. Der Ansatz von Infrastructure as a Service (IaaS) adressiert genau diese Einschränkungen. Um die mit IaaS erworbene Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit zu nutzen bedarf es ein Neudenken bei der Bereitstellung, Fehlerüberwachung und Qualitätskontrolle der Software [Quelle].
+% Agile Sftwareentwicklung beschreiben
+Der Einzug der agilen Softwareentwicklung bringt neue Anforderungen an die Infrastruktur der Software mit sich. Um neue Features zu testen, werden kurzzeitig Testinstanzen benötigt, Änderungen sollen mehrmals täglich ins Produktivsystem eingespielt werden \cite{IBM:2019}. Lastspitzen müssen schnell abgefangen und auf schwerwiegende Bugs mit zurückrollen zu vorherigen Versionen reagiert werden. Klassiche Bereitstellung von Software über selbst- oder fremdgehostete Server schränkt die Anpassungsmöglichkeiten bei Bedarf an mehr Rechenleistung ,weitere Rechen-Instanzen oder Serverstandorte stark ein und lässt Änderungen an der Infrastruktur nur sehr träge zu.
 
-Die 
+Der Ansatz von Infrastructure as a Service (IaaS) adressiert genau diese Einschränkungen.
+% Eins zwei Sätze über IaaS
+Um die mit IaaS erworbene Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit [Quelle] zu nutzen bedarf es ein Neudenken im Design der Infrastruktur und ihren Bereitstellungsprozessen. Außerdem bringen diese neuen Konzepte wiederum Herausforderungen mit sich die es zu bewätigen gilt. 
+% Sowie Design der Infrastruktur
+Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best-practices\grqq{} im Betrieb von cloudnahen Anwendungen evaluiert und am Beispiel der Startnext-Infrastruktur auf ihre Anwendbarkeit, Sinnhaftigkeit und durch das Erstellen von Proof of Concepts auf ihre Machbarkeit untersucht und diskutiert. 
 % Vielleicht besser bei Null anfangen. Klassische Infra ist blöd, weil voll nervig zu warten bli bla blub. Aber Cloud bietet Abhilfe. Die neu entstehenden Vorteile müssen jedoch genutzt werden. 
 % Die Bereitstellung einer Anwendung über Cloud-Computing Dienste allein, bietet noch keinen signifikanten Mehrwert. Um von einer cloud-nativen Infrastruktur zu sprechen, wird im allgemeinen die Nutzung der erworbenen Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit erwartet. Es werden Vorgehen bezüglich der Anwendungsbereitstellung, sowie Fehlerüberwachung und Qualitätskontrolle entwickelt, die das Potential des Cloud-Computings nutzen. [Quelle].
-% PROBLEMSTELLUNG
+\pagebreak
 %---------------------------------
-\subsection{Problemstellung}
-
+\subsection{Problemstellung}s
 Ein wesentliches Problem bei der Anfertigung einer Bachelor- oder Masterarbeit besteht in der Themenfindung und der dazugehörigen Entwicklung eines Exposés. Ein solches Exposé erfüllt dabei verschiedene Zwecke:
 
 \begin{enumerate}
