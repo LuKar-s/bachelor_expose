@@ -1,5 +1,5 @@
-.aux
-.bcf
-.log
-.run.xml
-.synctex.gz
+*.aux
+*.bcf
+*.log
+*.run.xml
+*.synctex.gz

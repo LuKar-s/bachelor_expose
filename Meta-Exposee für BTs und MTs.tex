@@ -274,7 +274,7 @@
 	%---------------------------------
 	\large 
 	\MetaAuthor\ (\MetaStudentNumber)\
- 	\MetaCoAuthor\\[0.25cm]
+	\MetaCoAuthor\\[0.25cm]
 
 	%---------------------------------
 	% DATE SECTION
@@ -307,13 +307,9 @@ Maßnahmen auch praktisch umgesetzt, diskutiert und der Erfolg der Maßnahmen be
 % PROBLEMSTELLUNG UND LÖSUNGSANSATZ
 %---------------------------------
 \section{\label{sec:problem_loesung}Problemstellung und Lösungsansatz}
-% Agile Sftwareentwicklung beschreiben
-Der Einzug der agilen Softwareentwicklung bringt neue Anforderungen an die Infrastruktur der Software mit sich. Um neue Features zu testen, werden kurzzeitig Testinstanzen benötigt, Änderungen sollen mehrmals täglich ins Produktivsystem eingespielt werden \cite{IBM:2019}. Lastspitzen müssen schnell abgefangen und auf schwerwiegende Bugs mit zurückrollen zu vorherigen Versionen reagiert werden. Klassiche Bereitstellung von Software über selbst- oder fremdgehostete Server schränkt die Anpassungsmöglichkeiten bei Bedarf an mehr Rechenleistung ,weitere Rechen-Instanzen oder Serverstandorte stark ein und lässt Änderungen an der Infrastruktur nur sehr träge zu.
-
-Der Ansatz von Infrastructure as a Service (IaaS) adressiert genau diese Einschränkungen.
-% Eins zwei Sätze über IaaS
-Um die mit IaaS erworbene Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit [Quelle] zu nutzen bedarf es ein Neudenken im Design der Infrastruktur und ihren Bereitstellungsprozessen. Außerdem bringen diese neuen Konzepte wiederum Herausforderungen mit sich die es zu bewätigen gilt. 
-% Sowie Design der Infrastruktur
+Moderne Softwarentwicklung stellt viele Anforderungen an die Infrastruktur. Um neue Features zu testen, werden kurzzeitig Testinstanzen benötigt, Änderungen sollen mehrmals täglich ins Produktivsystem eingespielt werden \cite{IBM:2019}. Lastspitzen müssen schnell abgefangen und auf schwerwiegende Bugs mit zurückrollen zu vorherigen Versionen reagiert werden. [Quelle] Klassiche Bereitstellung von Software über selbst- oder fremdgehostete Server schränkt die Anpassungsmöglichkeiten bei Bedarf an mehr Rechenleistung ,weitere Rechen-Instanzen oder Serverstandorte stark ein und lässt Änderungen an der Infrastruktur nur sehr träge zu. \newline
+Der Ansatz von Infrastructure as a Service (IaaS) adressiert genau diese Anforderungen.
+Als IaaS werden Cloud-Computing Services bezeichnet, die Rechner-, Speicher- und Netzwerkressourcen auf Anfrage bereitstellen. Dabei wird jede der Ressourcen als seperate Komponente bereitgestellt und nur für die Nutzungsdauer in Rechnung gestellt. Der Aufwand und die Kosten für das Betreiben von physikalischen Servern und Infrastruktur wird also umgangen, während das Einrichten, sowie Deinstallieren neuer Infrastruktur vollautomatisiert und innerhalb weniger Sekunden erfolgen kann. Um die mit IaaS erworbene Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit [Quelle] zu nutzen bedarf es ein Neudenken im Design der Infrastruktur und ihren Bereitstellungsprozessen. Außerdem bringen diese neuen Konzepte wiederum Herausforderungen mit sich die es zu bewätigen gilt. \newline 
 Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best-practices\grqq{} im Betrieb von cloudnahen Anwendungen evaluiert und am Beispiel der Startnext-Infrastruktur auf ihre Anwendbarkeit, Sinnhaftigkeit und durch das Erstellen von Proof of Concepts auf ihre Machbarkeit untersucht und diskutiert. 
 % Vielleicht besser bei Null anfangen. Klassische Infra ist blöd, weil voll nervig zu warten bli bla blub. Aber Cloud bietet Abhilfe. Die neu entstehenden Vorteile müssen jedoch genutzt werden. 
 % Die Bereitstellung einer Anwendung über Cloud-Computing Dienste allein, bietet noch keinen signifikanten Mehrwert. Um von einer cloud-nativen Infrastruktur zu sprechen, wird im allgemeinen die Nutzung der erworbenen Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit erwartet. Es werden Vorgehen bezüglich der Anwendungsbereitstellung, sowie Fehlerüberwachung und Qualitätskontrolle entwickelt, die das Potential des Cloud-Computings nutzen. [Quelle].
