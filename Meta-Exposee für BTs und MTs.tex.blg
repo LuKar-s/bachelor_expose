@@ -1,5 +1,0 @@
-[0] Config.pm:311> INFO - This is Biber 2.16
-[0] Config.pm:314> INFO - Logfile is 'Meta-Exposee fÃ¼r BTs und MTs.tex.blg'
-[112] biber-darwin:340> INFO - === Mo Nov  1, 2021, 18:04:38
-[326] Utils.pm:411> ERROR - Cannot find 'Meta-Exposee fÃ¼r BTs und MTs.tex.bcf'!
-[326] Biber.pm:132> INFO - ERRORS: 1

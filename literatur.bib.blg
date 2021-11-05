@@ -1,5 +1,0 @@
-[0] Config.pm:311> INFO - This is Biber 2.16
-[0] Config.pm:314> INFO - Logfile is 'Documents/BA-ExposÃ©/literatur.bib.blg'
-[107] biber-darwin:340> INFO - === Fr Nov  5, 2021, 11:23:01
-[326] Utils.pm:411> ERROR - Cannot find 'Documents/BA-ExposÃ©/literatur.bib.bcf'!
-[326] Biber.pm:132> INFO - ERRORS: 1

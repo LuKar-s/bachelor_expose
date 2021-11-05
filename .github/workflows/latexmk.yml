@@ -1,16 +1,21 @@
-on:
-  push:
-    paths:
-      - './*.tex'
-      - './*.bib'
+# on: push
 
-jobs:
-  create-PDF:
-    runs-on: ubuntu-latest
+# jobs:
+#   create-PDF:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Los gehts.
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: "*.tex"
-          glob_root_file: true
+#     steps:
+#       - name: Set up Git repository
+#         uses: actions/checkout@v2
+        
+#       - name: Make PDF.
+#         uses: xu-cheng/latex-action@v2
+#         with:
+#           root_file: "Meta-Exposee\ für\ BTs\ und\ MTs.tex"
+#           glob_root_file: true
+          
+#       - name: Upload PDF
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: PDF
+#           path: Meta-Exposee\ für\ BTs\ und\ MTs.pdf
