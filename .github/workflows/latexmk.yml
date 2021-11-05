@@ -1,4 +1,16 @@
-- uses: xu-cheng/latex-action@v2
-  with:
-    root_file: "*.tex"
-    glob_root_file: true
+on:
+  push:
+    paths:
+      - './*.tex'
+      - './*.bib'
+
+jobs:
+  create-PDF
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Los gehts.
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "*.tex"
+          glob_root_file: true
