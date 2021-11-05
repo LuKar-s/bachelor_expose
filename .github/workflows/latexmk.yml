@@ -5,7 +5,7 @@ on:
       - './*.bib'
 
 jobs:
-  create-PDF
+  create-PDF:
     runs-on: ubuntu-latest
 
     steps:
