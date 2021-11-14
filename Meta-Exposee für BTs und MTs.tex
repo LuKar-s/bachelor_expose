@@ -317,7 +317,6 @@ Moderne Softwarentwicklung stellt hohe Anforderungen an ihre Infrastruktur. Um n
 Der Ansatz von Infrastructure as a Service (IaaS) bietet einen Lösungsansatz für genau diese Probleme.
 Als IaaS werden Cloud-Computing Services bezeichnet, die Rechner-, Speicher- und Netzwerkressourcen auf Anfrage bereitstellen. Dabei wird jede der Ressourcen als seperate Komponente bereitgestellt und nur für die Nutzungsdauer in Rechnung gestellt. Der Aufwand und die Kosten für das Betreiben von physikalischen Servern und Infrastruktur wird also umgangen, während das Einrichten, sowie Deinstallieren neuer Infrastruktur vollautomatisiert und innerhalb weniger Sekunden erfolgen kann. Durch die alleinige Umstellung zu einem Hosting bei einem Cloud-Anbieter ergeben sich noch keine signifikanten Vorteile im Betrieb der Anwendung. Um die mit IaaS erworbene Skalierbarkeit, Flexibilität, und vereinfachte Verwaltbarkeit [Quelle] zu nutzen bedarf es ein Neudenken im Design der Infrastruktur und ihren Bereitstellungsprozessen, im allgemeinen als Cloud-Native Architektur bezeichnet. Zusätzlich bringen diese neuen Konzepte wiederum Herausforderungen mit sich, die es zu identifizieren und bewältigen gilt. \newline 
 Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best-practices\grqq{} im Betrieb von cloudnahen Anwendungen evaluiert und am Beispiel der Startnext-Infrastruktur auf ihre Anwendbarkeit, Sinnhaftigkeit und durch das Erstellen von Proof of Concepts auf ihre Machbarkeit untersucht und diskutiert. 
-\pagebreak
 
 
 \section{\label{sec:fachliche_ueberlegungen} Fachliche Überlegungen und Zielsetzung}
@@ -325,129 +324,143 @@ Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best
 \subsection{Startnext-Infrastruktur}
 
 \subsection{Fachliche Überlegungen}
+Cloud-native dient als Überbegriff für eine Vielzahl an Paradigmen und Prinzipien, die das Entwerfen und Implementieren von Infrastrukturen und Software als skalierbare, resiliente, administrierbare, observierbare und automatisierte Systeme ermöglicht.
+Das Immutable Infrastructure Paradigma spielt eine übergeordnete Rolle in Cloud Native Architekturen und ebnet den Weg für die Implementation vieler weiterer Prinzipien. Immutable Infrastructure verfolgt das Ziel, eines weitestgehend unveränderlichen Zustands eines bestehenden Systems. So führt also ein benötigtes Update eines Servers zum Erstellen eines neuen Servers mit dem neuen gewünschten Zustand und dem Entfernen der alten Instanz. Dieser Ansatz ist eine direkte Antwort auf das auseinanderdriften von Zuständen und dem dadurch unkalkulierbaren Ausgang von Zustandsänderungen wie in \cref{sec:problem_loesung} beschrieben. Zusätzlich müssen Änderungen nicht mehr an bereits produktiven Umgebungen vorgenommen werden, deren Ausfall zu direkten Auswirkungen an der Anwendung führen. Im Gegenteil können diese Änderungen ausgeführt, geprüft und anschließend in den produktiven Einsatz geschaltet werden.
+\subsubsection{Technologien}
+Bei der Umsetzung von Immutable Infrastructure spielen Werkzeuge und Technologien eine entschiedene Rolle um die gewünschte Nachvollziehbarkeit, Berechenbarkeit, sowie Skalierbarkeit zu gewährleisten. 
+
+Um wiederverwendbare Maschinen-Images zu erstellen kann das Tool Packer helfen. Packer ermöglicht das Erstellen von Konfigurationen, aus denen Maschinen-Images für unterschiedliche Plattformen erstellt werden können. Durch diesen Ansatz werden Maschinenimages wiederverwendbar und Änderung an diesen sind nachvollziehbar und widerruflich. Zusätzlich können über verschiedene Instanzen genutzte Grund-Images, auch Golden Image \cite{GoldenImage:2018} genannt für eine einheitliche und erleichterte Wartung der Systeme sorgen. Weiter sind Konzepte und Tools benötigt, welche den Anwendungsbetrieb und ihre Bereitstellung
+sicher, einfach zu administrieren und unanfällig für Fehler macht. Das Verwalten von Geheimnissen, Orchestrieren und Registrieren von Services sind hier zu nennen.
 
 
+Startnext-Anwendung bräuchte neue Ansätze bezüglich Logging etc
 
+Automatisierung
 
+Automatisierung benötigt QM (Testing)
 
-\paragraph{Methodisches: Wie gehe ich denn nun vor?} Die Bachelor- oder Masterthesis zeigt ihre Fähigkeit, eine Aufgabe mit wissenschaftlichen Mitteln in begrenzter Zeit zu bearbeiten. Ein wissenschaftliches Vorgehen sieht immer einen \textit{Analyseteil} (\qto{Was sind die Anforderungen, welche Rahmenbedingungen sind zu beachten, was gibt es für Möglichkeiten?}) und einen \textit{Syntheseteil} (\qto{Was habe ich weshalb wie gemacht?}) vor. Im Folgenden ein grober Gliederungsrahmen als Beispiel\footnote{Ein etwas konkreteres Muster für eine (generische) Gliederung findet sich in \cref{sec:gliederung}.}:
+\section{Verwandte Arbeiten}
 
-\begin{gliederung}
-	\item Einleitung: Hier führt eine kurze Beschreibung des Problemfeldes \bzw der Motivation, der konkreten Aufgabe(n), der angestrebten Vorgehensweise und \ggf auch ein erster Blick auf mögliche Lösungsansätze in das Thema der Arbeit ein (\qto{Ziel der Arbeit ist ...}). Danach sollte noch ein Abschnitt folgen, der kurz in Prosa die weitere Struktur der Arbeit und die wesentlichen Inhalte der Kapitel darstellt. Danksagungen (und Verwünschungen) gehören ins Vorwort.
-	
-	\item Analyse: Der \qto{Fleißteil} mit viel Literaturrecherche, \zB zu Fragestellungen wie
-	\begin{itemize}
-		\item Problemanalyse: Welche Anforderungen sollen erfüllt werden?
-		\item Verwandte Arbeiten: Welche alternativen Lösungsansätze gibt es schon in diesem Problemfeld? Welche Stärken und Schwächen haben diese Ansätze?
-		\item Grundlagen: Welche Konzepte und Methode(n) sind für diese Arbeit relevant? Welche (Software-)Werkzeuge können benutzt werden?
-	\end{itemize}
-	Der Analyseteil ist \ggf in mehrere Kapitel unterteilt.
-
-	\item Synthese: Hier geht es um das eigene \qto{Werk}: Konzeption und Realisierung, gerne in zwei Kapiteln (in dieser Reihenfolge!).
-	\begin{itemize}
-		\item Konzeption: Abstrakte, aber dennoch möglichst klare Spezifikation Ihres Lösungsansatzes. Mithilfe von Text und Diagrammen (\zB zu Interaktionsstruktur, Software-Architektur, Datenbankschema) wird ein Modell Ihrer Lösung (Struktur und Dynamik) beschrieben und darüber hinaus die zu deren Erstellung verwendeten Methoden.
-		\item Realisierung (natürlich nur, wenn was realisiert wurde): Beschreibung ausgewählter und interessanter Aspekte einer konkreten Umsetzung Ihres Konzepts auf einer (Programmier-)Plattform. Dazu können beispielsweise der Einsatz von besonderen Werkzeugen, Optimierungen oder spezielle Problemlösungen gehören, die aufgrund der gewählten Plattform erforderlich werden und daher nicht bereits durch das Konzept abgedeckt sind. 
-
-	\end{itemize}
-		
-	\item[] Ein gutes Konzept zeichnet sich vielfach dadurch aus, dass der Realisierungsteil eher klein bleiben kann, weil die Realisierung ja eben \qto{nur} die Umsetzung eines Konzepts in einer Programmierplattform darstellt und daher nicht jedes Detail aufgeführt werden muss (dafür gibt es als Anlage eine CD/DVD). 
+%
+%
+%\paragraph{Methodisches: Wie gehe ich denn nun vor?} Die Bachelor- oder Masterthesis zeigt ihre Fähigkeit, eine Aufgabe mit wissenschaftlichen Mitteln in begrenzter Zeit zu bearbeiten. Ein wissenschaftliches Vorgehen sieht immer einen \textit{Analyseteil} (\qto{Was sind die Anforderungen, welche Rahmenbedingungen sind zu beachten, was gibt es für Möglichkeiten?}) und einen \textit{Syntheseteil} (\qto{Was habe ich weshalb wie gemacht?}) vor. Im Folgenden ein grober Gliederungsrahmen als Beispiel\footnote{Ein etwas konkreteres Muster für eine (generische) Gliederung findet sich in \cref{sec:gliederung}.}:
+%
+%\begin{gliederung}
+%	\item Einleitung: Hier führt eine kurze Beschreibung des Problemfeldes \bzw der Motivation, der konkreten Aufgabe(n), der angestrebten Vorgehensweise und \ggf auch ein erster Blick auf mögliche Lösungsansätze in das Thema der Arbeit ein (\qto{Ziel der Arbeit ist ...}). Danach sollte noch ein Abschnitt folgen, der kurz in Prosa die weitere Struktur der Arbeit und die wesentlichen Inhalte der Kapitel darstellt. Danksagungen (und Verwünschungen) gehören ins Vorwort.
 %	
-	Dennoch gilt: Wissenschaftliche Ergebnisse müssen reproduzierbar sein. Daher ist es wichtig, dass die Arbeit möglichst alle relevanten Details für eine Re"=Implementierung und Reproduktion der Ergebnisse enthält.
-	
-	\item Evaluation: 
-	Teil einer wissenschaftlichen Arbeit ist die kritische Überprüfung und Diskussion der erzielten Ergebnisse (Konzept und Realisierung), wenn möglich auch der Vergleich mit bestehenden Ansätzen.
-	Welche Aspekte dabei im Vordergrund stehen, hängt vom Themenfeld Ihrer Arbeit ab: Performance einer Anwendung, Usability eines UI, Sicherheit einer Schnittstelle, Flexibilität einer Software-Architektur... Machen Sie zum Abschluss Ihrer Arbeit deutlich, welche Ziele Sie zu welchem Grad erreicht haben (auch wenn vielleicht nicht alles zum Besten steht).
-
-	\item Zusammenfassung und Ausblick: Das Schlusskapitel führt die wichtigsten Ergebnisse der Arbeit auf und zeigt, wo es weitergehen kann oder was noch verbessert werden müsste. Ein (eiliger) Leser von ausschließlich Einleitung sowie Zusammenfassung und Ausblick sollte bereits eine Vorstellung davon haben, welche Ziele die Arbeit verfolgt hat und welche davon inwieweit erreicht wurden. 
-
-\end{gliederung}
-
-\noindent
-Wie bereits in den Anmerkungen zum Analyseteil angedeutet, kommt der Literaturrecherche eine besondere Bedeutung zu: Welche verwandten Arbeiten gibt es? Wo finde ich Informationen zu relevanten Konzepten, Methoden oder Technologien? Entsprechende Literatur ist zu recherchieren und -- im kleineren Umfang -- bereits im Exposé zu referenzieren.
-
-Recherchearbeit ist ein oftmals aufwändiger und langwieriger Prozess, bei dem man in der Regel erst allmählich durch das Lesen vieler Quellen und das Verfolgen von Referenzen zu \qto{guter} Literatur gelangt. Lassen Sie sich nicht verleiten, sich auf bequem erreichbare Online-Quellen wie Blogs oder Wikipedia zu verlassen. Auch wenn Wikipedia immerhin eine Art Qualitätssicherung durch die \qto{Crowd} bietet und teilweise auch für den Einstieg brauchbare Ergebnisse liefert, stellen derartige Quellen in aller Regel Informationen zur Verfügung, die nicht objektiv von Fachexperten auf ihre Richtigkeit geprüft wurden (Sie werden im Web auch viele Quellen finden, die scheinbar glaubhaft \qto{belegen}, dass es keinen Klimawandel gibt oder die Evolution nie stattgefunden hat).
+%	\item Analyse: Der \qto{Fleißteil} mit viel Literaturrecherche, \zB zu Fragestellungen wie
+%	\begin{itemize}
+%		\item Problemanalyse: Welche Anforderungen sollen erfüllt werden?
+%		\item Verwandte Arbeiten: Welche alternativen Lösungsansätze gibt es schon in diesem Problemfeld? Welche Stärken und Schwächen haben diese Ansätze?
+%		\item Grundlagen: Welche Konzepte und Methode(n) sind für diese Arbeit relevant? Welche (Software-)Werkzeuge können benutzt werden?
+%	\end{itemize}
+%	Der Analyseteil ist \ggf in mehrere Kapitel unterteilt.
 %
-Online-Quellen -- sofern es sich dabei nicht um (auch) im Netz auffindbare wissenschaftliche Dokumente wie Konferenzbeiträge oder technische Berichte mit Autoren, Titel, Organisation und Datum handelt -- sind keine Literatur im engeren Sinne und sollten (sofern sie denn verwendet werden) bevorzugt in einem gesonderten Verzeichnis gelistet werden. 
+%	\item Synthese: Hier geht es um das eigene \qto{Werk}: Konzeption und Realisierung, gerne in zwei Kapiteln (in dieser Reihenfolge!).
+%	\begin{itemize}
+%		\item Konzeption: Abstrakte, aber dennoch möglichst klare Spezifikation Ihres Lösungsansatzes. Mithilfe von Text und Diagrammen (\zB zu Interaktionsstruktur, Software-Architektur, Datenbankschema) wird ein Modell Ihrer Lösung (Struktur und Dynamik) beschrieben und darüber hinaus die zu deren Erstellung verwendeten Methoden.
+%		\item Realisierung (natürlich nur, wenn was realisiert wurde): Beschreibung ausgewählter und interessanter Aspekte einer konkreten Umsetzung Ihres Konzepts auf einer (Programmier-)Plattform. Dazu können beispielsweise der Einsatz von besonderen Werkzeugen, Optimierungen oder spezielle Problemlösungen gehören, die aufgrund der gewählten Plattform erforderlich werden und daher nicht bereits durch das Konzept abgedeckt sind. 
 %
-Besser ist es in jedem Fall, sich auf Fachbücher \cite{lit:GammaEtAl:DesignPatterns} und wissenschaftliche Beiträge \cite{lit:SyromiatnikovEtAl:Model-View-*DesignPatterns} zu Konferenzen zu konzentrieren. Hier kann man davon ausgehen, dass diese Publikationen einen Review-Prozess durchlaufen haben und somit durch Fachexperten geprüft und für (hinreichend) gut befunden wurden.
-
-Für die Recherche gibt es eine Reihe von Quellen, die Sie als Studierende der Hochschule Bremen nutzen können:
-\begin{itemize}
-	\item Staats- und Universitätsbibliothek Bremen (SuUB)\footnote{\url{https://www.suub.uni-bremen.de}}, 
-	\item digitale Bibliotheken von Fachgesellschaften wie die ACM Digital Library\footnote{\url{https://dl.acm.org}} und IEEE XPlore Digital Library\footnote{\url{https://ieeexplore.ieee.org/Xplore/home.jsp}}			\item Google Scholar\footnote{\url{https://scholar.google.de}}
-\end{itemize}
-
-\noindent
-Sofern Sie im Hochschulnetz sind oder sich von zuhause über das VPN der Hochschule Bremen mit dem Hochschulnetz verbunden haben, können Sie online verfügbare Texte der SuUB runterladen und auch die genannten digitalen Bibliotheken kostenlos nutzen.
-
-%\pagebreak
-Für die Literaturverwaltung bieten sich Werkzeuge wie \zB \emph{Mendeley}\footnote{\label{footnote:mendeley}\url{https://www.mendeley.com/}} oder \emph{Zotero}\footnote{\url{https://www.zotero.org}} an. Diese bieten neben der Möglichkeit zur Verwaltung von Literatur in der Cloud und den Export von bibliographischen Einträgen in verschiedene Zielformate weitere Features wie \zB die Möglichkeit zur Suche nach Literatur innerhalb des Werkzeugs.
-
-Von besonderer Bedeutung in einer wissenschaftlichen Arbeit ist es, dass Sie Ihre Bewertungen (\zB von Lösungsansätzen) grundsätzlich deutlich machen und daraus resultierende Entscheidungen für den Leser nachvollziehbar begründen, sowohl in der Analyse als auch in der anschließenden Konzeption und Realisierung.
-%: Ergebnisse fallen nicht vom Himmel, auf Ihre Argumentation kommt es an! 
-Stellen Sie sich dazu stets Fragen Ihres Gutachters wie \qto{Warum haben Sie das so gemacht?} oder \qto{Welche Alternativen haben Sie betrachtet?} und beantworten Sie die Fragen in der Arbeit (und nicht erst im Kolloquium).
-
-
-\paragraph*{Formales: Was muss ich alles beim Schreiben eines wissenschaftlichen Textes beachten?} An wissenschaftliche Texte werden eine Reihe von formalen Anforderungen gestellt, die letztendlich das Ziel haben, die Lesbarkeit und Verständlichkeit des Textes zu erhöhen \cite{lit:Prevezanos:TechnischesSchreiben}. Einige davon werden hier aufgeführt.
-
-\noindent
-Schreibstil:
-	\begin{itemize}
-		\item Wissenschaftliche Distanz: Schreiben Sie nicht in der ersten Person (also nicht \qto{ICH habe mich dafür entschieden, dies und das so und so zu machen.}), sondern wählen Sie stattdessen lieber eine passive, distanzierte Form (\qto{Im Rahmen dieser Arbeit wurde entschieden, ...} oder \qto{Die Entscheidung, ..., war begründet durch ...}).
-		\item Inhaltliche Übernahmen aus der Literatur müssen selbstverständlich durch entsprechende Quellenangaben kenntlich gemacht werden. 
-		\item Verzichten soweit wie möglich auf Zitate, sondern finden Sie Ihre eigenen Worte für Inhalte, die Sie aus der Literatur übernehmen. Zitate bieten sich nur dann an, wenn die wörtliche Wiedergabe von Inhalten von Bedeutung ist (und das ist zumeist nicht der Fall). Zitate müssen durch Anführungszeichen und Quellenangabe kenntlich gemacht werden.
-		\item Plagiate sind jedwede Übernahme von Inhalten anderer, die \emph{nicht} als solche gekennzeichnet sind. Verstoßen Sie dagegen, führt das zwingend zum Nichtbestehen, \ggf sogar zur Exmatrikulation\footnote{Siehe jeweils gültige Fassung der Bachelor- und Masterprüfungsordnung (Allgemeiner Teil) unter\\ \url{http://www.hs-bremen.de/internet/de/hsb/hip/dokumente/po/}.}. Also: nutzen Sie das (gesicherte) Wissen anderer, aber weisen Sie unbedingt auf die Quellen hin.
-		\item Prüfen Sie Ihre Rechtschreibung! Und falls Sie da nicht über das richtige Händchen verfügen sollten: es gibt eine Reihe von Programmen mit einer automatischen Rechtschreibüberprüfung. Keine Ausreden!
-		\item Viele Seiten sind kein Zeichen von Qualität! Gewürdigt wird, wenn das Wesentliche kompakt dargestellt und auf den Punkt gebracht wird, ohne dabei die Nachvollziehbarkeit zu beeinträchtigen. Das kann \zB durch die Darstellung von Zusammenhängen durch selbst erstellte Grafiken, Übersichtstabellen und Spiegelstriche statt Prosa \emph{unterstützt} werden. 
-		
-		Als geeigneter Umfang für eine Bachelorarbeit haben sich 40-60 Seiten gezeigt, bei einer Masterarbeit 60-80 Seiten (jeweils ohne Anhänge).
-	\end{itemize}
-	
-\noindent
-Referenzen:	
-	\begin{itemize}
-		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ bekommt eine Kategorie, Nummer und Über- oder Unterschrift (\zB \emph{Listing 1: Hocheffizienter Suchalgorithmus}). 
-		Da Tabellen und Listings über eine Seite hinausgehen können, werden ihre Beschriftungen oberhalb der Tabelle \bzw des Listings angegeben, um frühzeitig die Bedeutung der Tabelle \bzw des Listings deutlich zu machen. Abbildungen werden unterhalb beschriftet.
-		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ muss mindestens einmal im Text referenziert werden und sollte in diesem Zusammenhang zudem im Text diskutiert werden, um die wesentliche Botschaft deutlich zu machen. (\zB \qto{\cref{lst:bubblesort} zeigt \emph{<Botschaft>}} oder \qto{\emph{<Diskussion...>} (siehe \cref{lst:bubblesort})}). 
-		\item \emph{Jede} Literaturquelle muss mindestens einmal im Text referenziert werden. Die Angabe der Seitenzahl ist in der Informatik unüblich, schadet aber auch nicht.
-		\item Wenn Sie URLs zu Organisationen wie der Object Management Group (OMG)\footnote{\url{https://www.omg.org}}, Firmen wie \zB Apple\footnote{\url{https://www.apple.com/de/}} oder Produkten wie Mendeley\footref{footnote:mendeley} angeben wollen, geschieht das sinnvollerweise in einer Fußnote. Online-Quellen \cite{lit:Gossman:MVVM}, die \qto{lesbare} und mit Autor und Titel versehene Texte bezeichnen, gehören dagegen ins Literaturverzeichnis.
-	\end{itemize}
-	
-%%% Listing
-% \lstinputlisting[firstnumber=1,caption={Hocheffizienter Suchalgorithmus}, label={lst:bubblesort}]{bubblesort.tex}
-%%% Listing
-
-
-\noindent
-Struktur:
-	\begin{itemize}
-	 	\item Ein neues \emph{Kapitel} (nicht Abschnitt oder Unterabschnitt) in einer Bachelor- oder Masterarbeit beginnt üblicherweise auf einer neuen Seite. Bei beidseitigem Layout beginnt ein neues Kapitel zudem auf einer ungeraden (rechten) Seite.
-	 	\item Nach einer Überschrift folgt nicht direkt eine zweite (Unter-)Überschrift, sondern zumindest eine kurze Beschreibung dessen, was in den folgenden Unterabschnitten zu erwarten ist (vgl.~\cref{sec:problem_loesung}).
-	 	\item Ein Kapitel oder Abschnitt mit weiterer Untergliederung enthält mindestens zwei Unterabschnitte. Oder anders formuliert: wenn es einen Abschnitt x.y.1 gibt, dann gibt es auch einen Abschnitt x.y.2 (ansonsten gibt es eben nur Abschnitt x.y)!
-	 	\item Verzichten Sie auf Vorwärtsreferenzen! Es ist im Allgemeinen schlechter Stil, bereits in Kapitel 2 mittels eines \qto{siehe Abschnitt 4.3.1} auf Ergebnisse zu verweisen, die erst später folgen (Ausnahmen bestätigen die Regel).
-	\end{itemize}
-
-
-\noindent
-Sonstiges:
-\begin{itemize}
-	\item Sehr spezifische Fachbegriffe sollten in einem Glossar mit ein bis zwei Sätzen erklärt werden. Hilft auch dem Schreiber! Neben Literaturverzeichnis und Glossar sind noch Verzeichnisse für Abbildungen, Tabellen und Listings gebräuchlich.
-	\item Wenn Abkürzungen verwendet werden sollen, muss die Abkürzung gemeinsam mit dem abzukürzenden Begriff explizit eingeführt werden. Also erst \qto{Asynchronous JavaScript and XML (AJAX) ist ein ...}, bevor später dann nur noch mit \qto{AJAX} gearbeitet wird. Ein Abkürzungsverzeichnis kann unterstützen, ersetzt aber die explizite Einführung der Abkürzung im Text nicht.
- 	\item Code-Fragmente bitte nicht mittels Screenshot als Abbildung einbinden. Das ist zwar einfach, jedoch ist das Resultat oft optisch unschön und -- und das ist wichtiger -- spätestens im Ausdruck in der Regel nicht mehr lesbar (und auch nicht durchsuchbar). Fügen Sie Code-Fragmente wie in \cref{lst:bubblesort} gezeigt als 
- 	%als Listing 
- 	formatierte Texte ein.
-	\item Skalieren Sie Abbildungen gleichen Typs (\zB UML-Diagrammen) oder mit gleichen Fonts einheitlich. Ggf.{\xspace} erfordert das dann etwas Arbeit am Layout, um eine Abbildung mit vorgegebener Skalierung auf die Abmessungen einer Seite anzupassen.
- 	\item Zahlen bis einschließlich zwölf schreibt man üblicherweise aus. Also \qto{die sieben Zwerge}, aber \qto{die wilde 13}!
-	\item \emph{LaTeX} \cite{lit:Schlosser:WissArbeitenMitLatex} ist schön und gerade im Wissenschaftsbetrieb der Informatik verbreitet, aber nicht Pflicht. 
-	
-	Die Erstellung des Exposés stellt grundsätzlich eine gute Möglichkeit dar, sich in das Textverarbeitungssystem der Wahl einzuarbeiten und dabei auch Features wie automatische Nummerierung (\zB von Kapiteln, Abbildungen), Querverweise, Erstellung von Verzeichnissen, Literaturverwaltung etc.\ als Vorbereitung auf die Thesis praktisch anzuwenden.
-\end{itemize}
-
-
-
-\noindent
-Und zu guter Letzt noch ein wichtiger Gedanke: Immer an den Leser denken! Der weiß noch nicht alles, was Sie wissen (oder im Laufe der Arbeit gelernt haben). Versuchen Sie daher, sich in seine Rolle hineinzuversetzen und führen Sie ihn möglichst so durch den Text, dass er Ihre Gedankengänge nach und nach verstehen kann. 
-
+%	\end{itemize}
+%		
+%	\item[] Ein gutes Konzept zeichnet sich vielfach dadurch aus, dass der Realisierungsteil eher klein bleiben kann, weil die Realisierung ja eben \qto{nur} die Umsetzung eines Konzepts in einer Programmierplattform darstellt und daher nicht jedes Detail aufgeführt werden muss (dafür gibt es als Anlage eine CD/DVD). 
+%%	
+%	Dennoch gilt: Wissenschaftliche Ergebnisse müssen reproduzierbar sein. Daher ist es wichtig, dass die Arbeit möglichst alle relevanten Details für eine Re"=Implementierung und Reproduktion der Ergebnisse enthält.
+%	
+%	\item Evaluation: 
+%	Teil einer wissenschaftlichen Arbeit ist die kritische Überprüfung und Diskussion der erzielten Ergebnisse (Konzept und Realisierung), wenn möglich auch der Vergleich mit bestehenden Ansätzen.
+%	Welche Aspekte dabei im Vordergrund stehen, hängt vom Themenfeld Ihrer Arbeit ab: Performance einer Anwendung, Usability eines UI, Sicherheit einer Schnittstelle, Flexibilität einer Software-Architektur... Machen Sie zum Abschluss Ihrer Arbeit deutlich, welche Ziele Sie zu welchem Grad erreicht haben (auch wenn vielleicht nicht alles zum Besten steht).
+%
+%	\item Zusammenfassung und Ausblick: Das Schlusskapitel führt die wichtigsten Ergebnisse der Arbeit auf und zeigt, wo es weitergehen kann oder was noch verbessert werden müsste. Ein (eiliger) Leser von ausschließlich Einleitung sowie Zusammenfassung und Ausblick sollte bereits eine Vorstellung davon haben, welche Ziele die Arbeit verfolgt hat und welche davon inwieweit erreicht wurden. 
+%
+%\end{gliederung}
+%
+%\noindent
+%Wie bereits in den Anmerkungen zum Analyseteil angedeutet, kommt der Literaturrecherche eine besondere Bedeutung zu: Welche verwandten Arbeiten gibt es? Wo finde ich Informationen zu relevanten Konzepten, Methoden oder Technologien? Entsprechende Literatur ist zu recherchieren und -- im kleineren Umfang -- bereits im Exposé zu referenzieren.
+%
+%Recherchearbeit ist ein oftmals aufwändiger und langwieriger Prozess, bei dem man in der Regel erst allmählich durch das Lesen vieler Quellen und das Verfolgen von Referenzen zu \qto{guter} Literatur gelangt. Lassen Sie sich nicht verleiten, sich auf bequem erreichbare Online-Quellen wie Blogs oder Wikipedia zu verlassen. Auch wenn Wikipedia immerhin eine Art Qualitätssicherung durch die \qto{Crowd} bietet und teilweise auch für den Einstieg brauchbare Ergebnisse liefert, stellen derartige Quellen in aller Regel Informationen zur Verfügung, die nicht objektiv von Fachexperten auf ihre Richtigkeit geprüft wurden (Sie werden im Web auch viele Quellen finden, die scheinbar glaubhaft \qto{belegen}, dass es keinen Klimawandel gibt oder die Evolution nie stattgefunden hat).
+%%
+%Online-Quellen -- sofern es sich dabei nicht um (auch) im Netz auffindbare wissenschaftliche Dokumente wie Konferenzbeiträge oder technische Berichte mit Autoren, Titel, Organisation und Datum handelt -- sind keine Literatur im engeren Sinne und sollten (sofern sie denn verwendet werden) bevorzugt in einem gesonderten Verzeichnis gelistet werden. 
+%%
+%Besser ist es in jedem Fall, sich auf Fachbücher \cite{lit:GammaEtAl:DesignPatterns} und wissenschaftliche Beiträge \cite{lit:SyromiatnikovEtAl:Model-View-*DesignPatterns} zu Konferenzen zu konzentrieren. Hier kann man davon ausgehen, dass diese Publikationen einen Review-Prozess durchlaufen haben und somit durch Fachexperten geprüft und für (hinreichend) gut befunden wurden.
+%
+%Für die Recherche gibt es eine Reihe von Quellen, die Sie als Studierende der Hochschule Bremen nutzen können:
+%\begin{itemize}
+%	\item Staats- und Universitätsbibliothek Bremen (SuUB)\footnote{\url{https://www.suub.uni-bremen.de}}, 
+%	\item digitale Bibliotheken von Fachgesellschaften wie die ACM Digital Library\footnote{\url{https://dl.acm.org}} und IEEE XPlore Digital Library\footnote{\url{https://ieeexplore.ieee.org/Xplore/home.jsp}}			\item Google Scholar\footnote{\url{https://scholar.google.de}}
+%\end{itemize}
+%
+%\noindent
+%Sofern Sie im Hochschulnetz sind oder sich von zuhause über das VPN der Hochschule Bremen mit dem Hochschulnetz verbunden haben, können Sie online verfügbare Texte der SuUB runterladen und auch die genannten digitalen Bibliotheken kostenlos nutzen.
+%
+%%\pagebreak
+%Für die Literaturverwaltung bieten sich Werkzeuge wie \zB \emph{Mendeley}\footnote{\label{footnote:mendeley}\url{https://www.mendeley.com/}} oder \emph{Zotero}\footnote{\url{https://www.zotero.org}} an. Diese bieten neben der Möglichkeit zur Verwaltung von Literatur in der Cloud und den Export von bibliographischen Einträgen in verschiedene Zielformate weitere Features wie \zB die Möglichkeit zur Suche nach Literatur innerhalb des Werkzeugs.
+%
+%Von besonderer Bedeutung in einer wissenschaftlichen Arbeit ist es, dass Sie Ihre Bewertungen (\zB von Lösungsansätzen) grundsätzlich deutlich machen und daraus resultierende Entscheidungen für den Leser nachvollziehbar begründen, sowohl in der Analyse als auch in der anschließenden Konzeption und Realisierung.
+%%: Ergebnisse fallen nicht vom Himmel, auf Ihre Argumentation kommt es an! 
+%Stellen Sie sich dazu stets Fragen Ihres Gutachters wie \qto{Warum haben Sie das so gemacht?} oder \qto{Welche Alternativen haben Sie betrachtet?} und beantworten Sie die Fragen in der Arbeit (und nicht erst im Kolloquium).
+%
+%
+%\paragraph*{Formales: Was muss ich alles beim Schreiben eines wissenschaftlichen Textes beachten?} An wissenschaftliche Texte werden eine Reihe von formalen Anforderungen gestellt, die letztendlich das Ziel haben, die Lesbarkeit und Verständlichkeit des Textes zu erhöhen \cite{lit:Prevezanos:TechnischesSchreiben}. Einige davon werden hier aufgeführt.
+%
+%\noindent
+%Schreibstil:
+%	\begin{itemize}
+%		\item Wissenschaftliche Distanz: Schreiben Sie nicht in der ersten Person (also nicht \qto{ICH habe mich dafür entschieden, dies und das so und so zu machen.}), sondern wählen Sie stattdessen lieber eine passive, distanzierte Form (\qto{Im Rahmen dieser Arbeit wurde entschieden, ...} oder \qto{Die Entscheidung, ..., war begründet durch ...}).
+%		\item Inhaltliche Übernahmen aus der Literatur müssen selbstverständlich durch entsprechende Quellenangaben kenntlich gemacht werden. 
+%		\item Verzichten soweit wie möglich auf Zitate, sondern finden Sie Ihre eigenen Worte für Inhalte, die Sie aus der Literatur übernehmen. Zitate bieten sich nur dann an, wenn die wörtliche Wiedergabe von Inhalten von Bedeutung ist (und das ist zumeist nicht der Fall). Zitate müssen durch Anführungszeichen und Quellenangabe kenntlich gemacht werden.
+%		\item Plagiate sind jedwede Übernahme von Inhalten anderer, die \emph{nicht} als solche gekennzeichnet sind. Verstoßen Sie dagegen, führt das zwingend zum Nichtbestehen, \ggf sogar zur Exmatrikulation\footnote{Siehe jeweils gültige Fassung der Bachelor- und Masterprüfungsordnung (Allgemeiner Teil) unter\\ \url{http://www.hs-bremen.de/internet/de/hsb/hip/dokumente/po/}.}. Also: nutzen Sie das (gesicherte) Wissen anderer, aber weisen Sie unbedingt auf die Quellen hin.
+%		\item Prüfen Sie Ihre Rechtschreibung! Und falls Sie da nicht über das richtige Händchen verfügen sollten: es gibt eine Reihe von Programmen mit einer automatischen Rechtschreibüberprüfung. Keine Ausreden!
+%		\item Viele Seiten sind kein Zeichen von Qualität! Gewürdigt wird, wenn das Wesentliche kompakt dargestellt und auf den Punkt gebracht wird, ohne dabei die Nachvollziehbarkeit zu beeinträchtigen. Das kann \zB durch die Darstellung von Zusammenhängen durch selbst erstellte Grafiken, Übersichtstabellen und Spiegelstriche statt Prosa \emph{unterstützt} werden. 
+%		
+%		Als geeigneter Umfang für eine Bachelorarbeit haben sich 40-60 Seiten gezeigt, bei einer Masterarbeit 60-80 Seiten (jeweils ohne Anhänge).
+%	\end{itemize}
+%	
+%\noindent
+%Referenzen:	
+%	\begin{itemize}
+%		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ bekommt eine Kategorie, Nummer und Über- oder Unterschrift (\zB \emph{Listing 1: Hocheffizienter Suchalgorithmus}). 
+%		Da Tabellen und Listings über eine Seite hinausgehen können, werden ihre Beschriftungen oberhalb der Tabelle \bzw des Listings angegeben, um frühzeitig die Bedeutung der Tabelle \bzw des Listings deutlich zu machen. Abbildungen werden unterhalb beschriftet.
+%		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ muss mindestens einmal im Text referenziert werden und sollte in diesem Zusammenhang zudem im Text diskutiert werden, um die wesentliche Botschaft deutlich zu machen. (\zB \qto{\cref{lst:bubblesort} zeigt \emph{<Botschaft>}} oder \qto{\emph{<Diskussion...>} (siehe \cref{lst:bubblesort})}). 
+%		\item \emph{Jede} Literaturquelle muss mindestens einmal im Text referenziert werden. Die Angabe der Seitenzahl ist in der Informatik unüblich, schadet aber auch nicht.
+%		\item Wenn Sie URLs zu Organisationen wie der Object Management Group (OMG)\footnote{\url{https://www.omg.org}}, Firmen wie \zB Apple\footnote{\url{https://www.apple.com/de/}} oder Produkten wie Mendeley\footref{footnote:mendeley} angeben wollen, geschieht das sinnvollerweise in einer Fußnote. Online-Quellen \cite{lit:Gossman:MVVM}, die \qto{lesbare} und mit Autor und Titel versehene Texte bezeichnen, gehören dagegen ins Literaturverzeichnis.
+%	\end{itemize}
+%	
+%%%% Listing
+%% \lstinputlisting[firstnumber=1,caption={Hocheffizienter Suchalgorithmus}, label={lst:bubblesort}]{bubblesort.tex}
+%%%% Listing
+%
+%
+%\noindent
+%Struktur:
+%	\begin{itemize}
+%	 	\item Ein neues \emph{Kapitel} (nicht Abschnitt oder Unterabschnitt) in einer Bachelor- oder Masterarbeit beginnt üblicherweise auf einer neuen Seite. Bei beidseitigem Layout beginnt ein neues Kapitel zudem auf einer ungeraden (rechten) Seite.
+%	 	\item Nach einer Überschrift folgt nicht direkt eine zweite (Unter-)Überschrift, sondern zumindest eine kurze Beschreibung dessen, was in den folgenden Unterabschnitten zu erwarten ist (vgl.~\cref{sec:problem_loesung}).
+%	 	\item Ein Kapitel oder Abschnitt mit weiterer Untergliederung enthält mindestens zwei Unterabschnitte. Oder anders formuliert: wenn es einen Abschnitt x.y.1 gibt, dann gibt es auch einen Abschnitt x.y.2 (ansonsten gibt es eben nur Abschnitt x.y)!
+%	 	\item Verzichten Sie auf Vorwärtsreferenzen! Es ist im Allgemeinen schlechter Stil, bereits in Kapitel 2 mittels eines \qto{siehe Abschnitt 4.3.1} auf Ergebnisse zu verweisen, die erst später folgen (Ausnahmen bestätigen die Regel).
+%	\end{itemize}
+%
+%
+%\noindent
+%Sonstiges:
+%\begin{itemize}
+%	\item Sehr spezifische Fachbegriffe sollten in einem Glossar mit ein bis zwei Sätzen erklärt werden. Hilft auch dem Schreiber! Neben Literaturverzeichnis und Glossar sind noch Verzeichnisse für Abbildungen, Tabellen und Listings gebräuchlich.
+%	\item Wenn Abkürzungen verwendet werden sollen, muss die Abkürzung gemeinsam mit dem abzukürzenden Begriff explizit eingeführt werden. Also erst \qto{Asynchronous JavaScript and XML (AJAX) ist ein ...}, bevor später dann nur noch mit \qto{AJAX} gearbeitet wird. Ein Abkürzungsverzeichnis kann unterstützen, ersetzt aber die explizite Einführung der Abkürzung im Text nicht.
+% 	\item Code-Fragmente bitte nicht mittels Screenshot als Abbildung einbinden. Das ist zwar einfach, jedoch ist das Resultat oft optisch unschön und -- und das ist wichtiger -- spätestens im Ausdruck in der Regel nicht mehr lesbar (und auch nicht durchsuchbar). Fügen Sie Code-Fragmente wie in \cref{lst:bubblesort} gezeigt als 
+% 	%als Listing 
+% 	formatierte Texte ein.
+%	\item Skalieren Sie Abbildungen gleichen Typs (\zB UML-Diagrammen) oder mit gleichen Fonts einheitlich. Ggf.{\xspace} erfordert das dann etwas Arbeit am Layout, um eine Abbildung mit vorgegebener Skalierung auf die Abmessungen einer Seite anzupassen.
+% 	\item Zahlen bis einschließlich zwölf schreibt man üblicherweise aus. Also \qto{die sieben Zwerge}, aber \qto{die wilde 13}!
+%	\item \emph{LaTeX} \cite{lit:Schlosser:WissArbeitenMitLatex} ist schön und gerade im Wissenschaftsbetrieb der Informatik verbreitet, aber nicht Pflicht. 
+%	
+%	Die Erstellung des Exposés stellt grundsätzlich eine gute Möglichkeit dar, sich in das Textverarbeitungssystem der Wahl einzuarbeiten und dabei auch Features wie automatische Nummerierung (\zB von Kapiteln, Abbildungen), Querverweise, Erstellung von Verzeichnissen, Literaturverwaltung etc.\ als Vorbereitung auf die Thesis praktisch anzuwenden.
+%\end{itemize}
+%
+%
+%
+%\noindent
+%Und zu guter Letzt noch ein wichtiger Gedanke: Immer an den Leser denken! Der weiß noch nicht alles, was Sie wissen (oder im Laufe der Arbeit gelernt haben). Versuchen Sie daher, sich in seine Rolle hineinzuversetzen und führen Sie ihn möglichst so durch den Text, dass er Ihre Gedankengänge nach und nach verstehen kann. 
+%
 
 \pagebreak
 
