@@ -70,8 +70,6 @@
   % pdfkeywords = {\MetaTitle, \MetaUnit, \MetaTask, \MetaInstitute},
 }
 
-blablba alles doof
-
 % Für Verweise mit Angabe des Typs des referenzierten Objekts (z.B. "Kapitel")
 \usepackage[ngerman]{cleveref}
 
@@ -292,14 +290,14 @@ blablba alles doof
 %---------------------------------
 \section{Einleitung}
 
-Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien sogenannter Cloud-Native-Architektur
+Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien einer sogenannten Cloud-Native-Architektur
 und sind damit so gestaltet, dass sie skalierbar, resilient, administrierbar, observierbar und automatisiert sind \cite{Lee:2021}. 
-Allerdings ist es oft nicht möglich diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse 
-laufen bereits in Systemen bei denen diese architektonischen Erkenntisse noch keine Anwendung fanden. Eine große Herausforderung vieler 
-Unternehmen ist es heute, ihre bestehenden Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der 
-moderne Prinzipen angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur 
-zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, in welchem die Startnext-Plattform von der bestehenden, klassichen Architektur 
-schrittweise in eine cloud-native Infrastrukur überführt wird und die Vorteile dieser Technologie effektiv nutzt. Zudem werden die erarbeiteten 
+Allerdings bietet sich selten die Gelegenheit, diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse 
+laufen bereits in Systemen, bei denen diese architektonischen Erkenntnisse noch keine Anwendung fanden. Eine große Herausforderung vieler 
+Unternehmen ist es heute, ihre bestehende Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der 
+moderne Prinzipien angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur 
+zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, um die Startnext-Plattform von der bestehenden, klassischen Architektur 
+schrittweise in eine cloud-native Infrastruktur zu überführen und die Vorteile dieser Technologie effektiv zu nutzen. Zudem werden die erarbeiteten 
 Maßnahmen auch praktisch umgesetzt, diskutiert und der Erfolg der Maßnahmen bewertet.
 
 %---------------------------------
@@ -345,8 +343,6 @@ sicher, einfach zu administrieren und unanfällig für Fehler macht. Das Verwalt
 Die ansteigende Nachfrage nach Cloud-nativen Technologien spiegelt sich auch in der wissenschaftlichen Literatur wieder. So findet auch das Thema Immutable Infrastructure als eine der grundlegenden Disziplinen in Cloud Native hohe Aufmerksamkeit in wissenschaftlichen Abhandlungen.
 
 Rob Hirschfeld \cite{Hirschfeld:2018} diskutiert auf der SREcon 18 Immutable Deployments und ihren Mehrwert. Er arbeitet heraus, dass der Ansatz Immutable Infrastructure zusammen mit Cloud Computing zum kosteneffizienten Ansatz für das Bereitstellen von Laufzeitumgebungen wird. Hirschfeld teilt Anwendungsweisen von ImmuInfra in 3 verschiedene Immutable Patterns ein, die vom einfachen Zurücksetzen und Neubespielen, bis zum Image Deploy, also das Erstellen eines fertigen Images, welches anschließend aufgespielt wird reichen. Diese drei Immutable Patterns gehen alle mit eigenen Vor- sowie Nachteilen einher. Hirschfelds Konferenzbeitrag bietet einen robusten Leitfaden um die Wahl des Immutable Infrastructure Ansatzes zu erleichtern und ihre jeweiligen Vorteile klarzustellen.
-
-Mir der Gestaltung eines resilienten und skalierenden Cloud-Native Systems durch eine selbstadministrierende Anwendung beschäftigt sich Toffetti \cite{Toffetti:2017}. Toffetti erstellt ein Cloud-Native Design, welches in der Lage ist selbständig zu skalieren und und sich selbstzuheilen. Die Architektur beinhaltet neben Cloud Orchestrierung und verteiltem Konfigurationsmanagement ein verteiltes Datenbanksystem, sowie die Fähigkeit der Leader-Election. Anschließend wird dieses Design auf eine bestehende Legacy Web-App angewandt. Er und sein Team emulieren Fehler in den containerisierten Teilen der Anwendung, als auch in den VMs, welche die Container hosten. Sie messen die Reaktion des Systems auf Fehler und diskutieren diese. Toffettis Journal bietet eine robuste Grundlage für die Wahl von DesignPatterns und eine Orientierung für das Erstellen eines selbstgemanagten Cloud-Native Systems.
 %w
 %
 %\paragraph{Methodisches: Wie gehe ich denn nun vor?} Die Bachelor- oder Masterthesis zeigt ihre Fähigkeit, eine Aufgabe mit wissenschaftlichen Mitteln in begrenzter Zeit zu bearbeiten. Ein wissenschaftliches Vorgehen sieht immer einen \textit{Analyseteil} (\qto{Was sind die Anforderungen, welche Rahmenbedingungen sind zu beachten, was gibt es für Möglichkeiten?}) und einen \textit{Syntheseteil} (\qto{Was habe ich weshalb wie gemacht?}) vor. Im Folgenden ein grober Gliederungsrahmen als Beispiel\footnote{Ein etwas konkreteres Muster für eine (generische) Gliederung findet sich in \cref{sec:gliederung}.}:
