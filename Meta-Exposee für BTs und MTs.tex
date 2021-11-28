@@ -320,9 +320,6 @@ Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best
 
 
 \section{\label{sec:fachliche_ueberlegungen} Fachliche Überlegungen und Zielsetzung}
-
-\subsection{Startnext-Infrastruktur}
-
 \subsection{Fachliche Überlegungen}
 Cloud-native dient als Überbegriff für eine Vielzahl an Paradigmen und Prinzipien, die das Entwerfen und Implementieren von Infrastrukturen und Software als skalierbare, resiliente, administrierbare, observierbare und automatisierte Systeme ermöglicht.
 Das Immutable Infrastructure Paradigma spielt eine übergeordnete Rolle in Cloud Native Architekturen und ebnet den Weg für die Implementation vieler weiterer Prinzipien. Immutable Infrastructure verfolgt das Ziel, eines weitestgehend unveränderlichen Zustands eines bestehenden Systems. So führt also ein benötigtes Update eines Servers zum Erstellen eines neuen Servers mit dem neuen gewünschten Zustand und dem Entfernen der alten Instanz. Dieser Ansatz ist eine direkte Antwort auf das auseinanderdriften von Zuständen und dem dadurch unkalkulierbaren Ausgang von Zustandsänderungen wie in \cref{sec:problem_loesung} beschrieben. Zusätzlich müssen Änderungen nicht mehr an bereits produktiven Umgebungen vorgenommen werden, deren Ausfall zu direkten Auswirkungen an der Anwendung führen. Im Gegenteil können diese Änderungen ausgeführt, geprüft und anschließend in den produktiven Einsatz geschaltet werden.
@@ -344,144 +341,28 @@ Die ansteigende Nachfrage nach Cloud-nativen Technologien spiegelt sich auch in 
 
 Rob Hirschfeld \cite{Hirschfeld:2018} diskutiert auf der SREcon 18 Immutable Deployments und ihren Mehrwert. Er arbeitet heraus, dass der Ansatz Immutable Infrastructure zusammen mit Cloud Computing zum kosteneffizienten Ansatz für das Bereitstellen von Laufzeitumgebungen wird. Hirschfeld teilt Anwendungsweisen von ImmuInfra in 3 verschiedene Immutable Patterns ein, die vom einfachen Zurücksetzen und Neubespielen, bis zum Image Deploy, also das Erstellen eines fertigen Images, welches anschließend aufgespielt wird reichen. Diese drei Immutable Patterns gehen alle mit eigenen Vor- sowie Nachteilen einher. Hirschfelds Konferenzbeitrag bietet einen robusten Leitfaden um die Wahl des Immutable Infrastructure Ansatzes zu erleichtern und ihre jeweiligen Vorteile klarzustellen.
 
-Mir der Gestaltung eines resilienten und skalierenden Cloud-Native Systems durch eine selbstadministrierende Anwendung beschäftigt sich Toffetti \cite{Toffetti:2017}. Toffetti erstellt ein Cloud-Native Design, welches in der Lage ist selbständig zu skalieren und und sich selbstzuheilen. Die Architektur beinhaltet neben Cloud Orchestrierung und verteiltem Konfigurationsmanagement ein verteiltes Datenbanksystem, sowie die Fähigkeit der Leader-Election. Anschließend wird dieses Design auf eine bestehende Legacy Web-App angewandt. Er und sein Team emulieren Fehler in den containerisierten Teilen der Anwendung, als auch in den VMs, welche die Container hosten. Sie messen die Reaktion des Systems auf Fehler und diskutieren diese. Toffettis Journal bietet eine robuste Grundlage für die Wahl von DesignPatterns und eine Orientierung für das Erstellen eines selbstgemanagten Cloud-Native Systems.
-%w
-%
-%\paragraph{Methodisches: Wie gehe ich denn nun vor?} Die Bachelor- oder Masterthesis zeigt ihre Fähigkeit, eine Aufgabe mit wissenschaftlichen Mitteln in begrenzter Zeit zu bearbeiten. Ein wissenschaftliches Vorgehen sieht immer einen \textit{Analyseteil} (\qto{Was sind die Anforderungen, welche Rahmenbedingungen sind zu beachten, was gibt es für Möglichkeiten?}) und einen \textit{Syntheseteil} (\qto{Was habe ich weshalb wie gemacht?}) vor. Im Folgenden ein grober Gliederungsrahmen als Beispiel\footnote{Ein etwas konkreteres Muster für eine (generische) Gliederung findet sich in \cref{sec:gliederung}.}:
-%
-%\begin{gliederung}
-%	\item Einleitung: Hier führt eine kurze Beschreibung des Problemfeldes \bzw der Motivation, der konkreten Aufgabe(n), der angestrebten Vorgehensweise und \ggf auch ein erster Blick auf mögliche Lösungsansätze in das Thema der Arbeit ein (\qto{Ziel der Arbeit ist ...}). Danach sollte noch ein Abschnitt folgen, der kurz in Prosa die weitere Struktur der Arbeit und die wesentlichen Inhalte der Kapitel darstellt. Danksagungen (und Verwünschungen) gehören ins Vorwort.
-%	
-%	\item Analyse: Der \qto{Fleißteil} mit viel Literaturrecherche, \zB zu Fragestellungen wie
-%	\begin{itemize}
-%		\item Problemanalyse: Welche Anforderungen sollen erfüllt werden?
-%		\item Verwandte Arbeiten: Welche alternativen Lösungsansätze gibt es schon in diesem Problemfeld? Welche Stärken und Schwächen haben diese Ansätze?
-%		\item Grundlagen: Welche Konzepte und Methode(n) sind für diese Arbeit relevant? Welche (Software-)Werkzeuge können benutzt werden?
-%	\end{itemize}
-%	Der Analyseteil ist \ggf in mehrere Kapitel unterteilt.
-%
-%	\item Synthese: Hier geht es um das eigene \qto{Werk}: Konzeption und Realisierung, gerne in zwei Kapiteln (in dieser Reihenfolge!).
-%	\begin{itemize}
-%		\item Konzeption: Abstrakte, aber dennoch möglichst klare Spezifikation Ihres Lösungsansatzes. Mithilfe von Text und Diagrammen (\zB zu Interaktionsstruktur, Software-Architektur, Datenbankschema) wird ein Modell Ihrer Lösung (Struktur und Dynamik) beschrieben und darüber hinaus die zu deren Erstellung verwendeten Methoden.
-%		\item Realisierung (natürlich nur, wenn was realisiert wurde): Beschreibung ausgewählter und interessanter Aspekte einer konkreten Umsetzung Ihres Konzepts auf einer (Programmier-)Plattform. Dazu können beispielsweise der Einsatz von besonderen Werkzeugen, Optimierungen oder spezielle Problemlösungen gehören, die aufgrund der gewählten Plattform erforderlich werden und daher nicht bereits durch das Konzept abgedeckt sind. 
-%
-%	\end{itemize}
-%		
-%	\item[] Ein gutes Konzept zeichnet sich vielfach dadurch aus, dass der Realisierungsteil eher klein bleiben kann, weil die Realisierung ja eben \qto{nur} die Umsetzung eines Konzepts in einer Programmierplattform darstellt und daher nicht jedes Detail aufgeführt werden muss (dafür gibt es als Anlage eine CD/DVD). 
-%%	
-%	Dennoch gilt: Wissenschaftliche Ergebnisse müssen reproduzierbar sein. Daher ist es wichtig, dass die Arbeit möglichst alle relevanten Details für eine Re"=Implementierung und Reproduktion der Ergebnisse enthält.
-%	
-%	\item Evaluation: 
-%	Teil einer wissenschaftlichen Arbeit ist die kritische Überprüfung und Diskussion der erzielten Ergebnisse (Konzept und Realisierung), wenn möglich auch der Vergleich mit bestehenden Ansätzen.
-%	Welche Aspekte dabei im Vordergrund stehen, hängt vom Themenfeld Ihrer Arbeit ab: Performance einer Anwendung, Usability eines UI, Sicherheit einer Schnittstelle, Flexibilität einer Software-Architektur... Machen Sie zum Abschluss Ihrer Arbeit deutlich, welche Ziele Sie zu welchem Grad erreicht haben (auch wenn vielleicht nicht alles zum Besten steht).
-%
-%	\item Zusammenfassung und Ausblick: Das Schlusskapitel führt die wichtigsten Ergebnisse der Arbeit auf und zeigt, wo es weitergehen kann oder was noch verbessert werden müsste. Ein (eiliger) Leser von ausschließlich Einleitung sowie Zusammenfassung und Ausblick sollte bereits eine Vorstellung davon haben, welche Ziele die Arbeit verfolgt hat und welche davon inwieweit erreicht wurden. 
-%
-%\end{gliederung}
-%
-%\noindent
-%Wie bereits in den Anmerkungen zum Analyseteil angedeutet, kommt der Literaturrecherche eine besondere Bedeutung zu: Welche verwandten Arbeiten gibt es? Wo finde ich Informationen zu relevanten Konzepten, Methoden oder Technologien? Entsprechende Literatur ist zu recherchieren und -- im kleineren Umfang -- bereits im Exposé zu referenzieren.
-%
-%Recherchearbeit ist ein oftmals aufwändiger und langwieriger Prozess, bei dem man in der Regel erst allmählich durch das Lesen vieler Quellen und das Verfolgen von Referenzen zu \qto{guter} Literatur gelangt. Lassen Sie sich nicht verleiten, sich auf bequem erreichbare Online-Quellen wie Blogs oder Wikipedia zu verlassen. Auch wenn Wikipedia immerhin eine Art Qualitätssicherung durch die \qto{Crowd} bietet und teilweise auch für den Einstieg brauchbare Ergebnisse liefert, stellen derartige Quellen in aller Regel Informationen zur Verfügung, die nicht objektiv von Fachexperten auf ihre Richtigkeit geprüft wurden (Sie werden im Web auch viele Quellen finden, die scheinbar glaubhaft \qto{belegen}, dass es keinen Klimawandel gibt oder die Evolution nie stattgefunden hat).
-%%
-%Online-Quellen -- sofern es sich dabei nicht um (auch) im Netz auffindbare wissenschaftliche Dokumente wie Konferenzbeiträge oder technische Berichte mit Autoren, Titel, Organisation und Datum handelt -- sind keine Literatur im engeren Sinne und sollten (sofern sie denn verwendet werden) bevorzugt in einem gesonderten Verzeichnis gelistet werden. 
-%%
-%Besser ist es in jedem Fall, sich auf Fachbücher \cite{lit:GammaEtAl:DesignPatterns} und wissenschaftliche Beiträge \cite{lit:SyromiatnikovEtAl:Model-View-*DesignPatterns} zu Konferenzen zu konzentrieren. Hier kann man davon ausgehen, dass diese Publikationen einen Review-Prozess durchlaufen haben und somit durch Fachexperten geprüft und für (hinreichend) gut befunden wurden.
-%
-%Für die Recherche gibt es eine Reihe von Quellen, die Sie als Studierende der Hochschule Bremen nutzen können:
-%\begin{itemize}
-%	\item Staats- und Universitätsbibliothek Bremen (SuUB)\footnote{\url{https://www.suub.uni-bremen.de}}, 
-%	\item digitale Bibliotheken von Fachgesellschaften wie die ACM Digital Library\footnote{\url{https://dl.acm.org}} und IEEE XPlore Digital Library\footnote{\url{https://ieeexplore.ieee.org/Xplore/home.jsp}}			\item Google Scholar\footnote{\url{https://scholar.google.de}}
-%\end{itemize}
-%
-%\noindent
-%Sofern Sie im Hochschulnetz sind oder sich von zuhause über das VPN der Hochschule Bremen mit dem Hochschulnetz verbunden haben, können Sie online verfügbare Texte der SuUB runterladen und auch die genannten digitalen Bibliotheken kostenlos nutzen.
-%
-%%\pagebreak
-%Für die Literaturverwaltung bieten sich Werkzeuge wie \zB \emph{Mendeley}\footnote{\label{footnote:mendeley}\url{https://www.mendeley.com/}} oder \emph{Zotero}\footnote{\url{https://www.zotero.org}} an. Diese bieten neben der Möglichkeit zur Verwaltung von Literatur in der Cloud und den Export von bibliographischen Einträgen in verschiedene Zielformate weitere Features wie \zB die Möglichkeit zur Suche nach Literatur innerhalb des Werkzeugs.
-%
-%Von besonderer Bedeutung in einer wissenschaftlichen Arbeit ist es, dass Sie Ihre Bewertungen (\zB von Lösungsansätzen) grundsätzlich deutlich machen und daraus resultierende Entscheidungen für den Leser nachvollziehbar begründen, sowohl in der Analyse als auch in der anschließenden Konzeption und Realisierung.
-%%: Ergebnisse fallen nicht vom Himmel, auf Ihre Argumentation kommt es an! 
-%Stellen Sie sich dazu stets Fragen Ihres Gutachters wie \qto{Warum haben Sie das so gemacht?} oder \qto{Welche Alternativen haben Sie betrachtet?} und beantworten Sie die Fragen in der Arbeit (und nicht erst im Kolloquium).
-%
-%
-%\paragraph*{Formales: Was muss ich alles beim Schreiben eines wissenschaftlichen Textes beachten?} An wissenschaftliche Texte werden eine Reihe von formalen Anforderungen gestellt, die letztendlich das Ziel haben, die Lesbarkeit und Verständlichkeit des Textes zu erhöhen \cite{lit:Prevezanos:TechnischesSchreiben}. Einige davon werden hier aufgeführt.
-%
-%\noindent
-%Schreibstil:
-%	\begin{itemize}
-%		\item Wissenschaftliche Distanz: Schreiben Sie nicht in der ersten Person (also nicht \qto{ICH habe mich dafür entschieden, dies und das so und so zu machen.}), sondern wählen Sie stattdessen lieber eine passive, distanzierte Form (\qto{Im Rahmen dieser Arbeit wurde entschieden, ...} oder \qto{Die Entscheidung, ..., war begründet durch ...}).
-%		\item Inhaltliche Übernahmen aus der Literatur müssen selbstverständlich durch entsprechende Quellenangaben kenntlich gemacht werden. 
-%		\item Verzichten soweit wie möglich auf Zitate, sondern finden Sie Ihre eigenen Worte für Inhalte, die Sie aus der Literatur übernehmen. Zitate bieten sich nur dann an, wenn die wörtliche Wiedergabe von Inhalten von Bedeutung ist (und das ist zumeist nicht der Fall). Zitate müssen durch Anführungszeichen und Quellenangabe kenntlich gemacht werden.
-%		\item Plagiate sind jedwede Übernahme von Inhalten anderer, die \emph{nicht} als solche gekennzeichnet sind. Verstoßen Sie dagegen, führt das zwingend zum Nichtbestehen, \ggf sogar zur Exmatrikulation\footnote{Siehe jeweils gültige Fassung der Bachelor- und Masterprüfungsordnung (Allgemeiner Teil) unter\\ \url{http://www.hs-bremen.de/internet/de/hsb/hip/dokumente/po/}.}. Also: nutzen Sie das (gesicherte) Wissen anderer, aber weisen Sie unbedingt auf die Quellen hin.
-%		\item Prüfen Sie Ihre Rechtschreibung! Und falls Sie da nicht über das richtige Händchen verfügen sollten: es gibt eine Reihe von Programmen mit einer automatischen Rechtschreibüberprüfung. Keine Ausreden!
-%		\item Viele Seiten sind kein Zeichen von Qualität! Gewürdigt wird, wenn das Wesentliche kompakt dargestellt und auf den Punkt gebracht wird, ohne dabei die Nachvollziehbarkeit zu beeinträchtigen. Das kann \zB durch die Darstellung von Zusammenhängen durch selbst erstellte Grafiken, Übersichtstabellen und Spiegelstriche statt Prosa \emph{unterstützt} werden. 
-%		
-%		Als geeigneter Umfang für eine Bachelorarbeit haben sich 40-60 Seiten gezeigt, bei einer Masterarbeit 60-80 Seiten (jeweils ohne Anhänge).
-%	\end{itemize}
-%	
-%\noindent
-%Referenzen:	
-%	\begin{itemize}
-%		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ bekommt eine Kategorie, Nummer und Über- oder Unterschrift (\zB \emph{Listing 1: Hocheffizienter Suchalgorithmus}). 
-%		Da Tabellen und Listings über eine Seite hinausgehen können, werden ihre Beschriftungen oberhalb der Tabelle \bzw des Listings angegeben, um frühzeitig die Bedeutung der Tabelle \bzw des Listings deutlich zu machen. Abbildungen werden unterhalb beschriftet.
-%		\item \emph{Jede} Abbildung, Tabelle und jedes Listing etc.\ muss mindestens einmal im Text referenziert werden und sollte in diesem Zusammenhang zudem im Text diskutiert werden, um die wesentliche Botschaft deutlich zu machen. (\zB \qto{\cref{lst:bubblesort} zeigt \emph{<Botschaft>}} oder \qto{\emph{<Diskussion...>} (siehe \cref{lst:bubblesort})}). 
-%		\item \emph{Jede} Literaturquelle muss mindestens einmal im Text referenziert werden. Die Angabe der Seitenzahl ist in der Informatik unüblich, schadet aber auch nicht.
-%		\item Wenn Sie URLs zu Organisationen wie der Object Management Group (OMG)\footnote{\url{https://www.omg.org}}, Firmen wie \zB Apple\footnote{\url{https://www.apple.com/de/}} oder Produkten wie Mendeley\footref{footnote:mendeley} angeben wollen, geschieht das sinnvollerweise in einer Fußnote. Online-Quellen \cite{lit:Gossman:MVVM}, die \qto{lesbare} und mit Autor und Titel versehene Texte bezeichnen, gehören dagegen ins Literaturverzeichnis.
-%	\end{itemize}
-%	
-%%%% Listing
-%% \lstinputlisting[firstnumber=1,caption={Hocheffizienter Suchalgorithmus}, label={lst:bubblesort}]{bubblesort.tex}
-%%%% Listing
-%
-%
-%\noindent
-%Struktur:
-%	\begin{itemize}
-%	 	\item Ein neues \emph{Kapitel} (nicht Abschnitt oder Unterabschnitt) in einer Bachelor- oder Masterarbeit beginnt üblicherweise auf einer neuen Seite. Bei beidseitigem Layout beginnt ein neues Kapitel zudem auf einer ungeraden (rechten) Seite.
-%	 	\item Nach einer Überschrift folgt nicht direkt eine zweite (Unter-)Überschrift, sondern zumindest eine kurze Beschreibung dessen, was in den folgenden Unterabschnitten zu erwarten ist (vgl.~\cref{sec:problem_loesung}).
-%	 	\item Ein Kapitel oder Abschnitt mit weiterer Untergliederung enthält mindestens zwei Unterabschnitte. Oder anders formuliert: wenn es einen Abschnitt x.y.1 gibt, dann gibt es auch einen Abschnitt x.y.2 (ansonsten gibt es eben nur Abschnitt x.y)!
-%	 	\item Verzichten Sie auf Vorwärtsreferenzen! Es ist im Allgemeinen schlechter Stil, bereits in Kapitel 2 mittels eines \qto{siehe Abschnitt 4.3.1} auf Ergebnisse zu verweisen, die erst später folgen (Ausnahmen bestätigen die Regel).
-%	\end{itemize}
-%
-%
-%\noindent
-%Sonstiges:
-%\begin{itemize}
-%	\item Sehr spezifische Fachbegriffe sollten in einem Glossar mit ein bis zwei Sätzen erklärt werden. Hilft auch dem Schreiber! Neben Literaturverzeichnis und Glossar sind noch Verzeichnisse für Abbildungen, Tabellen und Listings gebräuchlich.
-%	\item Wenn Abkürzungen verwendet werden sollen, muss die Abkürzung gemeinsam mit dem abzukürzenden Begriff explizit eingeführt werden. Also erst \qto{Asynchronous JavaScript and XML (AJAX) ist ein ...}, bevor später dann nur noch mit \qto{AJAX} gearbeitet wird. Ein Abkürzungsverzeichnis kann unterstützen, ersetzt aber die explizite Einführung der Abkürzung im Text nicht.
-% 	\item Code-Fragmente bitte nicht mittels Screenshot als Abbildung einbinden. Das ist zwar einfach, jedoch ist das Resultat oft optisch unschön und -- und das ist wichtiger -- spätestens im Ausdruck in der Regel nicht mehr lesbar (und auch nicht durchsuchbar). Fügen Sie Code-Fragmente wie in \cref{lst:bubblesort} gezeigt als 
-% 	%als Listing 
-% 	formatierte Texte ein.
-%	\item Skalieren Sie Abbildungen gleichen Typs (\zB UML-Diagrammen) oder mit gleichen Fonts einheitlich. Ggf.{\xspace} erfordert das dann etwas Arbeit am Layout, um eine Abbildung mit vorgegebener Skalierung auf die Abmessungen einer Seite anzupassen.
-% 	\item Zahlen bis einschließlich zwölf schreibt man üblicherweise aus. Also \qto{die sieben Zwerge}, aber \qto{die wilde 13}!
-%	\item \emph{LaTeX} \cite{lit:Schlosser:WissArbeitenMitLatex} ist schön und gerade im Wissenschaftsbetrieb der Informatik verbreitet, aber nicht Pflicht. 
-%	
-%	Die Erstellung des Exposés stellt grundsätzlich eine gute Möglichkeit dar, sich in das Textverarbeitungssystem der Wahl einzuarbeiten und dabei auch Features wie automatische Nummerierung (\zB von Kapiteln, Abbildungen), Querverweise, Erstellung von Verzeichnissen, Literaturverwaltung etc.\ als Vorbereitung auf die Thesis praktisch anzuwenden.
-%\end{itemize}
-%
-%
-%
-%\noindent
-%Und zu guter Letzt noch ein wichtiger Gedanke: Immer an den Leser denken! Der weiß noch nicht alles, was Sie wissen (oder im Laufe der Arbeit gelernt haben). Versuchen Sie daher, sich in seine Rolle hineinzuversetzen und führen Sie ihn möglichst so durch den Text, dass er Ihre Gedankengänge nach und nach verstehen kann. 
-%
+Mir der Gestaltung eines resilienten und skalierenden Cloud-Native Systems durch eine selbstadministrierende Anwendung beschäftigt sich Toffetti \cite{Toffetti:2017}. Toffetti erstellt ein Cloud-Native Design, welches in der Lage ist selbständig zu skalieren und sich selbstzuheilen. Die Architektur beinhaltet neben Cloud Orchestrierung und verteiltem Konfigurationsmanagement ein verteiltes Datenbanksystem, sowie die Fähigkeit der Leader-Election. Anschließend wird dieses Design auf eine bestehende Legacy Web-App angewandt. Er und sein Team emulieren Fehler in den containerisierten Teilen der Anwendung, als auch in den VMs, welche die Container hosten. Sie messen die Reaktion des Systems auf Fehler und diskutieren diese. Toffettis Journal bietet eine robuste Grundlage für die Wahl von DesignPatterns und eine Orientierung für das Erstellen eines selbstgemanagten Cloud-Native Systems.
 
 \pagebreak
 
 %---------------------------------
 % KONKRETE AUFGABEN
 %---------------------------------
-\section{Konkrete Aufgaben}
+\section{Konkrete Aufgaben und Zeitplan}
 
-Für die Erstellung eines Exposés sind die folgenden Aufgaben durchzuführen:
+Die Ausführung der Bachelorarbeit ist zeitlich wie folgt geplant:
+\newline
+Dauer: 9 Wochen
 
 \begin{itemize}
-	\item Recherche: Ermittlung von Literatur zum wissenschaftlichen Arbeiten, Vergleich mit ähnlichen Dokumenten
- 	\item Anforderungsanalyse: Zusammenstellung von Anforderungen an das zu erstellende Exposé \bzw die Bachelor- oder Masterarbeit.
- 	\item Konzeption: Entwicklung eines Konzepts für das Exposé / die Thesis: Textverarbeitung / Textsatzsystem, Gliederung, Konventionen, ...
- 	\item prototypische Implementierung: Schreiben des Exposés \bzw der Thesis
- 	\item Evaluation: Bewertung und Diskussion der Ergebnisse (machen auch die Prüfer ;-) )
- 	\item Qualitätssicherung: sorgfältige Überprüfung des Dokuments auf inhaltliche und formale Fehler
+	\item Woche 1: Literaturrecherche,Einleitung, Einrichten des Dokuments
+ 	\item Woche 2: Verfassen der Problemstellung, Zielsetzung und möglichen Lösungsansätzen
+ 	\item Woche 3: Entwickeln der Anforderungsanalyse
+ 	\item Woche 4: Grundlagen und verwandte Arbeiten - Verfassen und Recherche
+ 	\item Woche 5: Konzeption - Entwickeln eines Entwurfs zur Lösung der Problemstellung
+ 	\item Woche 6-7: Prototypische Umsetzung
+ 	\item Woche 8: Evaluation - Bewertung und Diskussion der Ergebnisse
+ 	\item Woche 9: Überarbeitung, Korrektur und Druck des Dokuments
 \end{itemize}
 
 
@@ -489,10 +370,6 @@ Für die Erstellung eines Exposés sind die folgenden Aufgaben durchzuführen:
 % VORLÄUFIGE GLIEDERUNG
 %---------------------------------
 \section{\label{sec:gliederung}Vorläufige Gliederung}
-
-{\small
-\emph{Hinweis: Im Folgenden wird exemplarisch eine \emph{generische} Gliederung gezeigt, die selbstverständlich abhängig vom Thema angepasst werden muss.}
-}
 
 {\parindent=5mm 
 Eigenständigkeitserklärung
@@ -503,7 +380,7 @@ Zusammenfassung / Abstract}
 	\item Einleitung
 	\begin{gliederung}
 		\item Problemfeld
-		\item Ziele der Arbeit
+		\item Ziesetzung
 		\item Lösungsansatz
 		\item Aufbau der Arbeit
 	\end{gliederung}
@@ -517,34 +394,32 @@ Zusammenfassung / Abstract}
 	
 	\item Grundlagen und verwandte Arbeiten
 	\begin{gliederung}
-		\item Grundlagenthema 1
-		\item Grundlagenthema 2
-		\item ...
+		\item Immutable Infrastructure
+			\item HashiCorp - Packer
+		\item Selfmanaged Infrastructure
+		\item Monitoring von Infrastruktur
+		\item Automatisierte Orchestrierung und Konfiguration von Infrastruktur
+			\item HashiCorp - Nomad \& Consul
 		\item Verwandte Arbeiten
 	\end{gliederung}
 	
 	\item Konzeption
 	\begin{gliederung}
-		\item Entwurf einer Software-Architektur
-		\item Design des User Interfaces
-		\item Entwurf der Komponenten
+		\item Entwurf einer Cloud-Native Infrastruktur
 		\begin{gliederung}
-			\item Komponente 1
-			\item Komponente 2
-			\item ...
+			\item Image-Erstellung
+			\item Deployment
+			\item Konfiguration
+			\item Orchestrierung
+			\item Monitoring
 		\end{gliederung}
-		\item Spezifikation der Schnittstellen
 		\item Zusammenfassung
 	\end{gliederung}
 	
 	\item Prototypische Realisierung
 	\begin{gliederung}
-		\item Wahl der Realisierungsplattform
-		\item Festlegung des Realisierungsumfangs
-		\item Ausgewählte Realisierungsaspekte
-		\begin{gliederung}
-			\item REST-API mit Bibliothek XYZ
-			\item ...
+		\item Grundlegender Aufbau der Infrastruktur
+		\item Konfigurieren der Services
 		\end{gliederung}
 		\item Qualitätssicherung
 		\item Zusammenfassung
@@ -566,14 +441,6 @@ Zusammenfassung / Abstract}
 \end{gliederung}
 
 {\parindent=5mm
-Anhang}
-\begin{itemize}%[itemindent=6mm]
-\item[A] Anhang <Thema A>
-\item[B] Anhang <Thema B>
-\item[...]
-\end{itemize}
-
-{\parindent=5mm
 Literaturverzeichnis}%\\[0.25cm]
 % Vertikaler Abstand
 %\vspace*{\baselineskip}
@@ -582,102 +449,21 @@ Literaturverzeichnis}%\\[0.25cm]
 %\bigskip    % großer variabler Abstand
 
 \pagebreak
-\noindent
-Ergänzende Anmerkungen:\nopagebreak
-\begin{itemize}
-	\item Wenn die Evaluation eher knapp ausfällt, kann sie \ggf auch zu einem Abschnitt des Kapitels 5 (Prototypische Realisierung) werden.
-	\item Die eigentliche (nummerierte) Gliederung wird noch durch Eigenständigkeitserklärung, Zusammenfassung / Abstract, Verzeichnisse und \evtl Anhänge ergänzt:
-	\begin{itemize}
-		\item In der Eigenständigkeitserklärung versichern Sie unter anderem, die Arbeit selbständig, ohne unzulässige fremde Hilfen und unter Angabe aller verwendeten Quellen und Hilfsmittel angefertigt zu haben. 
-		Das Prüfungsamt der Hochschule Bremen stellt auf seiner Web-Seite ein Muster\footnote{\urlMitUmlauten{https://www.hs-bremen.de/mam/hsb/dezernate/d3/erkl\%C3\%A4rung\_\%C3\%BCber\_das\_eigenst\%C3\%A4ndige\_erstellen\_der\_arbeit.doc}{https://www.hs-bremen.de/mam/hsb/dezernate/d3/erklärung\_über\_das\_eigenständige\_erstellen\_ der\_arbeit.doc}} bereit, das allerdings noch angepasst werden muss.
-		\item Zusammenfassung \bzw englischer Abstract enthalten jeweils nur einen Abschnitt, der den Inhalt der Arbeit und die erzielten Ergebnisse ohne gesonderte Einführung in das Thema zusammenfasst.
-		\item Neben dem Literaturverzeichnis sind noch Verzeichnisse für Abbildungen, Tabellen, Listings und Abkürzungen gebräuchlich. Ein Glossar kann helfen, spezielle und dem Leser im Allgemeinen nicht bekannte Fachbegriffe zu erläutern.
-		\item Anhänge können dazu dienen, der Arbeit wichtige Inhalte beizufügen, die für die Wiedergabe im Hauptteil nicht geeignet erscheinen, weil Sie \zB nicht für jeden Leser relevant sind oder allgemein den Lesefluss stören.
-	\end{itemize}
-\end{itemize}
-
-
-%---------------------------------
-% ZEITRAHMEN
-%---------------------------------
-\section{Zeitplanung}
-
-Geplanter Starttermin\footnote{Hinweis: Das Prüfungsamt erbittet sich 14 Tage Vorlauf. Dementsprechend muss der Starttermin ausgehend vom Zeitpunkt der Anmeldung einer Bachelor- oder Masterarbeit mindestens zwei Wochen in der Zukunft liegen.}: 
-1. September 2018
-
-\noindent
-Bearbeitungsdauer: 9 Wochen (bei Bachelorarbeiten) / 22 Wochen (bei Masterarbeiten)
-
-\noindent
-\cref{tab:zeitplanung} stellt die geplanten Arbeitspakete und Meilensteine dar:
-%
-\begin{table}[H]		% 'H' option is provided by float package 
-
-\caption{Arbeitspakete und Meilensteine} \label{tab:zeitplanung} 
-
-\centering
-\def\arraystretch{1.3}%  1 is the default, change whatever you need
-%\setlength{\extrarowheight}{5pt}%
-\begin{tabular}{|c|p{10cm}|c|}
-
-\hline 
-%%%%%%
- M1 & Offizieller Beginn der Arbeit & 01.09.2018  \\ 
-\hline
- & \tabitem Einrichtung der Textverarbeitung & \multirowcell{3}{1,5 Wochen} \\ 
- & \tabitem Anforderungsanalyse & \\ 
-%\cline{2-2}
- & \tabitem Verfassen der Thesis: Kapitel 2 (Anforderungsanalyse) & \\ 
-\hline
-%%%%%%
- M2 & Abschluss der Analysephase & 11.09.2018  \\ 
-\hline
- & \tabitem Recherche & \multirowcell{2}{1,5 Wochen} \\ 
-%\cline{2-2}
- & \tabitem Verfassen der Thesis: Kapitel 3 (Grundlagen) & \\ 
-\hline
-%%%%%%
- M3 & Abschluss der Recherchephase & 21.09.2018  \\ 
-\hline
- & \tabitem ... & \multirowcell{2}{n Wochen} \\ 
-%\cline{2-2}
- & \tabitem Verfassen der Thesis: ... & \\ 
-\hline
-%%%%%%
- M4 & Abschluss der ...phase & ...  \\ 
-\hline
-\multicolumn{3}{|c|}{...} \\
-\hline
-%%%%%%
- M$y$ & Erste Fassung vollständige Thesis & 27.10.2018  \\ 
-\hline
- & \tabitem Korrekturlesen & \multirowcell{2}{1 Woche} \\ 
-%\cline{2-2}
- & \tabitem Drucken / binden lassen & \\ 
-\hline
-%%%%%%
- M$z$ & Abgabe der Thesis & 02.11.2018  \\ 
-\hline
-
-
-\end{tabular} 
-\end{table}
-
 
 %---------------------------------
 % PERSONEN
 %---------------------------------
 \section{Unterschriften}
 
-Student\_in:
+Student:
 
- Name: \textit{<Vor- und Nachname>}
+ Name: \textit{Lukas Karsten}
  
- Adresse: \textit{<Straße und Hausnummer, PLZ, Stadt>}
+ Adresse: \textit{Bismarckstraße 156, 28205 Bremen}
  
- Telefon: \textit{<Nummer, unter der man Sie bei wichtigen Fragen schnell erreichen kann.>}
+ Telefon: \textit{0157/81733962}
   
- E -Mail: \textit{<mail@stud.hs-bremen.de>}
+ E -Mail: \textit{lkarsten@stud.hs-bremen.de}
 
 
  \hfill \rule{7cm}{0.2mm}
@@ -685,7 +471,7 @@ Student\_in:
  \hfill Unterschrift (Student\_in)
  
 \noindent
-Erstgutachter\_in / Betreuer\_in: \textit{<Prof.~Dr. Ernst>} \\[0.2cm]
+Erstgutachter\_in / Betreuer\_in: \textit{ Prof. Dr. Lars Braubach } \\[0.2cm]
 
  \hfill \rule{7cm}{0.2mm}
 
@@ -693,7 +479,7 @@ Erstgutachter\_in / Betreuer\_in: \textit{<Prof.~Dr. Ernst>} \\[0.2cm]
 
 
 \noindent
-Zweitgutachter\_in: \textit{<Prof.~Dr. Lustig>}
+Zweitgutachter\_in: \textit{}
 
 
 
