@@ -70,6 +70,8 @@
   % pdfkeywords = {\MetaTitle, \MetaUnit, \MetaTask, \MetaInstitute},
 }
 
+blablba alles doof
+
 % Für Verweise mit Angabe des Typs des referenzierten Objekts (z.B. "Kapitel")
 \usepackage[ngerman]{cleveref}
 
@@ -290,14 +292,14 @@
 %---------------------------------
 \section{Einleitung}
 
-Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien einer sogenannten Cloud-Native-Architektur
+Moderne IT-Systeme folgen bei ihrer Bereitstellung oft den Prinzipien sogenannter Cloud-Native-Architektur
 und sind damit so gestaltet, dass sie skalierbar, resilient, administrierbar, observierbar und automatisiert sind \cite{Lee:2021}. 
-Allerdings bietet sich selten die Gelegenheit, diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse 
-laufen bereits in Systemen, bei denen diese architektonischen Erkenntnisse noch keine Anwendung fanden. Eine große Herausforderung vieler 
-Unternehmen ist es heute, ihre bestehende Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der 
-moderne Prinzipien angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur 
-zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, um die Startnext-Plattform von der bestehenden, klassischen Architektur 
-schrittweise in eine cloud-native Infrastruktur zu überführen und die Vorteile dieser Technologie effektiv zu nutzen. Zudem werden die erarbeiteten 
+Allerdings ist es oft nicht möglich diese Systeme von Grund auf neu zu entwickeln. Ein Großteil der essentiellen Geschäftsprozesse 
+laufen bereits in Systemen bei denen diese architektonischen Erkenntisse noch keine Anwendung fanden. Eine große Herausforderung vieler 
+Unternehmen ist es heute, ihre bestehenden Infrastruktur schrittweise so zu verändern \cite{Fiedelholtz:2021}, dass möglichst viele der 
+moderne Prinzipen angewendet werden können, ohne den laufenden Betrieb zu stören oder eine komplette Neuentwicklung der Server-Architektur 
+zu erzwingen. Im Rahmen dieser Arbeit wird ein Konzept erarbeitet, in welchem die Startnext-Plattform von der bestehenden, klassichen Architektur 
+schrittweise in eine cloud-native Infrastrukur überführt wird und die Vorteile dieser Technologie effektiv nutzt. Zudem werden die erarbeiteten 
 Maßnahmen auch praktisch umgesetzt, diskutiert und der Erfolg der Maßnahmen bewertet.
 
 %---------------------------------
@@ -320,6 +322,9 @@ Ihm Rahmen der Bachelorthesis werden bereits g{\"a}ngige Konzepte und \glqq best
 
 
 \section{\label{sec:fachliche_ueberlegungen} Fachliche Überlegungen und Zielsetzung}
+
+\subsection{Startnext-Infrastruktur}
+
 \subsection{Fachliche Überlegungen}
 Cloud-native dient als Überbegriff für eine Vielzahl an Paradigmen und Prinzipien, die das Entwerfen und Implementieren von Infrastrukturen und Software als skalierbare, resiliente, administrierbare, observierbare und automatisierte Systeme ermöglicht.
 Das Immutable Infrastructure Paradigma spielt eine übergeordnete Rolle in Cloud Native Architekturen und ebnet den Weg für die Implementation vieler weiterer Prinzipien. Immutable Infrastructure verfolgt das Ziel, eines weitestgehend unveränderlichen Zustands eines bestehenden Systems. So führt also ein benötigtes Update eines Servers zum Erstellen eines neuen Servers mit dem neuen gewünschten Zustand und dem Entfernen der alten Instanz. Dieser Ansatz ist eine direkte Antwort auf das auseinanderdriften von Zuständen und dem dadurch unkalkulierbaren Ausgang von Zustandsänderungen wie in \cref{sec:problem_loesung} beschrieben. Zusätzlich müssen Änderungen nicht mehr an bereits produktiven Umgebungen vorgenommen werden, deren Ausfall zu direkten Auswirkungen an der Anwendung führen. Im Gegenteil können diese Änderungen ausgeführt, geprüft und anschließend in den produktiven Einsatz geschaltet werden.
@@ -340,7 +345,8 @@ sicher, einfach zu administrieren und unanfällig für Fehler macht. Das Verwalt
 Die ansteigende Nachfrage nach Cloud-nativen Technologien spiegelt sich auch in der wissenschaftlichen Literatur wieder. So findet auch das Thema Immutable Infrastructure als eine der grundlegenden Disziplinen in Cloud Native hohe Aufmerksamkeit in wissenschaftlichen Abhandlungen.
 
 Rob Hirschfeld \cite{Hirschfeld:2018} diskutiert auf der SREcon 18 Immutable Deployments und ihren Mehrwert. Er arbeitet heraus, dass der Ansatz Immutable Infrastructure zusammen mit Cloud Computing zum kosteneffizienten Ansatz für das Bereitstellen von Laufzeitumgebungen wird. Hirschfeld teilt Anwendungsweisen von ImmuInfra in 3 verschiedene Immutable Patterns ein, die vom einfachen Zurücksetzen und Neubespielen, bis zum Image Deploy, also das Erstellen eines fertigen Images, welches anschließend aufgespielt wird reichen. Diese drei Immutable Patterns gehen alle mit eigenen Vor- sowie Nachteilen einher. Hirschfelds Konferenzbeitrag bietet einen robusten Leitfaden um die Wahl des Immutable Infrastructure Ansatzes zu erleichtern und ihre jeweiligen Vorteile klarzustellen.
-<<<<<<< HEAD
+
+Mir der Gestaltung eines resilienten und skalierenden Cloud-Native Systems durch eine selbstadministrierende Anwendung beschäftigt sich Toffetti \cite{Toffetti:2017}. Toffetti erstellt ein Cloud-Native Design, welches in der Lage ist selbständig zu skalieren und und sich selbstzuheilen. Die Architektur beinhaltet neben Cloud Orchestrierung und verteiltem Konfigurationsmanagement ein verteiltes Datenbanksystem, sowie die Fähigkeit der Leader-Election. Anschließend wird dieses Design auf eine bestehende Legacy Web-App angewandt. Er und sein Team emulieren Fehler in den containerisierten Teilen der Anwendung, als auch in den VMs, welche die Container hosten. Sie messen die Reaktion des Systems auf Fehler und diskutieren diese. Toffettis Journal bietet eine robuste Grundlage für die Wahl von DesignPatterns und eine Orientierung für das Erstellen eines selbstgemanagten Cloud-Native Systems.
 %w
 %
 %\paragraph{Methodisches: Wie gehe ich denn nun vor?} Die Bachelor- oder Masterthesis zeigt ihre Fähigkeit, eine Aufgabe mit wissenschaftlichen Mitteln in begrenzter Zeit zu bearbeiten. Ein wissenschaftliches Vorgehen sieht immer einen \textit{Analyseteil} (\qto{Was sind die Anforderungen, welche Rahmenbedingungen sind zu beachten, was gibt es für Möglichkeiten?}) und einen \textit{Syntheseteil} (\qto{Was habe ich weshalb wie gemacht?}) vor. Im Folgenden ein grober Gliederungsrahmen als Beispiel\footnote{Ein etwas konkreteres Muster für eine (generische) Gliederung findet sich in \cref{sec:gliederung}.}:
@@ -461,31 +467,23 @@ Rob Hirschfeld \cite{Hirschfeld:2018} diskutiert auf der SREcon 18 Immutable Dep
 %\noindent
 %Und zu guter Letzt noch ein wichtiger Gedanke: Immer an den Leser denken! Der weiß noch nicht alles, was Sie wissen (oder im Laufe der Arbeit gelernt haben). Versuchen Sie daher, sich in seine Rolle hineinzuversetzen und führen Sie ihn möglichst so durch den Text, dass er Ihre Gedankengänge nach und nach verstehen kann. 
 %
-=======
-
-Mir der Gestaltung eines resilienten und skalierenden Cloud-Native Systems durch eine selbstadministrierende Anwendung beschäftigt sich Toffetti \cite{Toffetti:2017}. Toffetti erstellt ein Cloud-Native Design, welches in der Lage ist selbständig zu skalieren und sich selbstzuheilen. Die Architektur beinhaltet neben Cloud Orchestrierung und verteiltem Konfigurationsmanagement ein verteiltes Datenbanksystem, sowie die Fähigkeit der Leader-Election. Anschließend wird dieses Design auf eine bestehende Legacy Web-App angewandt. Er und sein Team emulieren Fehler in den containerisierten Teilen der Anwendung, als auch in den VMs, welche die Container hosten. Sie messen die Reaktion des Systems auf Fehler und diskutieren diese. Toffettis Journal bietet eine robuste Grundlage für die Wahl von DesignPatterns und eine Orientierung für das Erstellen eines selbstgemanagten Cloud-Native Systems.
->>>>>>> main
 
 \pagebreak
 
 %---------------------------------
 % KONKRETE AUFGABEN
 %---------------------------------
-\section{Konkrete Aufgaben und Zeitplan}
+\section{Konkrete Aufgaben}
 
-Die Ausführung der Bachelorarbeit ist zeitlich wie folgt geplant:
-\newline
-Dauer: 9 Wochen
+Für die Erstellung eines Exposés sind die folgenden Aufgaben durchzuführen:
 
 \begin{itemize}
-	\item Woche 1: Literaturrecherche,Einleitung, Einrichten des Dokuments
- 	\item Woche 2: Verfassen der Problemstellung, Zielsetzung und möglichen Lösungsansätzen
- 	\item Woche 3: Entwickeln der Anforderungsanalyse
- 	\item Woche 4: Grundlagen und verwandte Arbeiten - Verfassen und Recherche
- 	\item Woche 5: Konzeption - Entwickeln eines Entwurfs zur Lösung der Problemstellung
- 	\item Woche 6-7: Prototypische Umsetzung
- 	\item Woche 8: Evaluation - Bewertung und Diskussion der Ergebnisse
- 	\item Woche 9: Überarbeitung, Korrektur und Druck des Dokuments
+	\item Recherche: Ermittlung von Literatur zum wissenschaftlichen Arbeiten, Vergleich mit ähnlichen Dokumenten
+ 	\item Anforderungsanalyse: Zusammenstellung von Anforderungen an das zu erstellende Exposé \bzw die Bachelor- oder Masterarbeit.
+ 	\item Konzeption: Entwicklung eines Konzepts für das Exposé / die Thesis: Textverarbeitung / Textsatzsystem, Gliederung, Konventionen, ...
+ 	\item prototypische Implementierung: Schreiben des Exposés \bzw der Thesis
+ 	\item Evaluation: Bewertung und Diskussion der Ergebnisse (machen auch die Prüfer ;-) )
+ 	\item Qualitätssicherung: sorgfältige Überprüfung des Dokuments auf inhaltliche und formale Fehler
 \end{itemize}
 
 
@@ -493,6 +491,10 @@ Dauer: 9 Wochen
 % VORLÄUFIGE GLIEDERUNG
 %---------------------------------
 \section{\label{sec:gliederung}Vorläufige Gliederung}
+
+{\small
+\emph{Hinweis: Im Folgenden wird exemplarisch eine \emph{generische} Gliederung gezeigt, die selbstverständlich abhängig vom Thema angepasst werden muss.}
+}
 
 {\parindent=5mm 
 Eigenständigkeitserklärung
@@ -503,7 +505,7 @@ Zusammenfassung / Abstract}
 	\item Einleitung
 	\begin{gliederung}
 		\item Problemfeld
-		\item Ziesetzung
+		\item Ziele der Arbeit
 		\item Lösungsansatz
 		\item Aufbau der Arbeit
 	\end{gliederung}
@@ -517,32 +519,34 @@ Zusammenfassung / Abstract}
 	
 	\item Grundlagen und verwandte Arbeiten
 	\begin{gliederung}
-		\item Immutable Infrastructure
-			\item HashiCorp - Packer
-		\item Selfmanaged Infrastructure
-		\item Monitoring von Infrastruktur
-		\item Automatisierte Orchestrierung und Konfiguration von Infrastruktur
-			\item HashiCorp - Nomad \& Consul
+		\item Grundlagenthema 1
+		\item Grundlagenthema 2
+		\item ...
 		\item Verwandte Arbeiten
 	\end{gliederung}
 	
 	\item Konzeption
 	\begin{gliederung}
-		\item Entwurf einer Cloud-Native Infrastruktur
+		\item Entwurf einer Software-Architektur
+		\item Design des User Interfaces
+		\item Entwurf der Komponenten
 		\begin{gliederung}
-			\item Image-Erstellung
-			\item Deployment
-			\item Konfiguration
-			\item Orchestrierung
-			\item Monitoring
+			\item Komponente 1
+			\item Komponente 2
+			\item ...
 		\end{gliederung}
+		\item Spezifikation der Schnittstellen
 		\item Zusammenfassung
 	\end{gliederung}
 	
 	\item Prototypische Realisierung
 	\begin{gliederung}
-		\item Grundlegender Aufbau der Infrastruktur
-		\item Konfigurieren der Services
+		\item Wahl der Realisierungsplattform
+		\item Festlegung des Realisierungsumfangs
+		\item Ausgewählte Realisierungsaspekte
+		\begin{gliederung}
+			\item REST-API mit Bibliothek XYZ
+			\item ...
 		\end{gliederung}
 		\item Qualitätssicherung
 		\item Zusammenfassung
@@ -564,6 +568,14 @@ Zusammenfassung / Abstract}
 \end{gliederung}
 
 {\parindent=5mm
+Anhang}
+\begin{itemize}%[itemindent=6mm]
+\item[A] Anhang <Thema A>
+\item[B] Anhang <Thema B>
+\item[...]
+\end{itemize}
+
+{\parindent=5mm
 Literaturverzeichnis}%\\[0.25cm]
 % Vertikaler Abstand
 %\vspace*{\baselineskip}
@@ -572,21 +584,102 @@ Literaturverzeichnis}%\\[0.25cm]
 %\bigskip    % großer variabler Abstand
 
 \pagebreak
+\noindent
+Ergänzende Anmerkungen:\nopagebreak
+\begin{itemize}
+	\item Wenn die Evaluation eher knapp ausfällt, kann sie \ggf auch zu einem Abschnitt des Kapitels 5 (Prototypische Realisierung) werden.
+	\item Die eigentliche (nummerierte) Gliederung wird noch durch Eigenständigkeitserklärung, Zusammenfassung / Abstract, Verzeichnisse und \evtl Anhänge ergänzt:
+	\begin{itemize}
+		\item In der Eigenständigkeitserklärung versichern Sie unter anderem, die Arbeit selbständig, ohne unzulässige fremde Hilfen und unter Angabe aller verwendeten Quellen und Hilfsmittel angefertigt zu haben. 
+		Das Prüfungsamt der Hochschule Bremen stellt auf seiner Web-Seite ein Muster\footnote{\urlMitUmlauten{https://www.hs-bremen.de/mam/hsb/dezernate/d3/erkl\%C3\%A4rung\_\%C3\%BCber\_das\_eigenst\%C3\%A4ndige\_erstellen\_der\_arbeit.doc}{https://www.hs-bremen.de/mam/hsb/dezernate/d3/erklärung\_über\_das\_eigenständige\_erstellen\_ der\_arbeit.doc}} bereit, das allerdings noch angepasst werden muss.
+		\item Zusammenfassung \bzw englischer Abstract enthalten jeweils nur einen Abschnitt, der den Inhalt der Arbeit und die erzielten Ergebnisse ohne gesonderte Einführung in das Thema zusammenfasst.
+		\item Neben dem Literaturverzeichnis sind noch Verzeichnisse für Abbildungen, Tabellen, Listings und Abkürzungen gebräuchlich. Ein Glossar kann helfen, spezielle und dem Leser im Allgemeinen nicht bekannte Fachbegriffe zu erläutern.
+		\item Anhänge können dazu dienen, der Arbeit wichtige Inhalte beizufügen, die für die Wiedergabe im Hauptteil nicht geeignet erscheinen, weil Sie \zB nicht für jeden Leser relevant sind oder allgemein den Lesefluss stören.
+	\end{itemize}
+\end{itemize}
+
+
+%---------------------------------
+% ZEITRAHMEN
+%---------------------------------
+\section{Zeitplanung}
+
+Geplanter Starttermin\footnote{Hinweis: Das Prüfungsamt erbittet sich 14 Tage Vorlauf. Dementsprechend muss der Starttermin ausgehend vom Zeitpunkt der Anmeldung einer Bachelor- oder Masterarbeit mindestens zwei Wochen in der Zukunft liegen.}: 
+1. September 2018
+
+\noindent
+Bearbeitungsdauer: 9 Wochen (bei Bachelorarbeiten) / 22 Wochen (bei Masterarbeiten)
+
+\noindent
+\cref{tab:zeitplanung} stellt die geplanten Arbeitspakete und Meilensteine dar:
+%
+\begin{table}[H]		% 'H' option is provided by float package 
+
+\caption{Arbeitspakete und Meilensteine} \label{tab:zeitplanung} 
+
+\centering
+\def\arraystretch{1.3}%  1 is the default, change whatever you need
+%\setlength{\extrarowheight}{5pt}%
+\begin{tabular}{|c|p{10cm}|c|}
+
+\hline 
+%%%%%%
+ M1 & Offizieller Beginn der Arbeit & 01.09.2018  \\ 
+\hline
+ & \tabitem Einrichtung der Textverarbeitung & \multirowcell{3}{1,5 Wochen} \\ 
+ & \tabitem Anforderungsanalyse & \\ 
+%\cline{2-2}
+ & \tabitem Verfassen der Thesis: Kapitel 2 (Anforderungsanalyse) & \\ 
+\hline
+%%%%%%
+ M2 & Abschluss der Analysephase & 11.09.2018  \\ 
+\hline
+ & \tabitem Recherche & \multirowcell{2}{1,5 Wochen} \\ 
+%\cline{2-2}
+ & \tabitem Verfassen der Thesis: Kapitel 3 (Grundlagen) & \\ 
+\hline
+%%%%%%
+ M3 & Abschluss der Recherchephase & 21.09.2018  \\ 
+\hline
+ & \tabitem ... & \multirowcell{2}{n Wochen} \\ 
+%\cline{2-2}
+ & \tabitem Verfassen der Thesis: ... & \\ 
+\hline
+%%%%%%
+ M4 & Abschluss der ...phase & ...  \\ 
+\hline
+\multicolumn{3}{|c|}{...} \\
+\hline
+%%%%%%
+ M$y$ & Erste Fassung vollständige Thesis & 27.10.2018  \\ 
+\hline
+ & \tabitem Korrekturlesen & \multirowcell{2}{1 Woche} \\ 
+%\cline{2-2}
+ & \tabitem Drucken / binden lassen & \\ 
+\hline
+%%%%%%
+ M$z$ & Abgabe der Thesis & 02.11.2018  \\ 
+\hline
+
+
+\end{tabular} 
+\end{table}
+
 
 %---------------------------------
 % PERSONEN
 %---------------------------------
 \section{Unterschriften}
 
-Student:
+Student\_in:
 
- Name: \textit{Lukas Karsten}
+ Name: \textit{<Vor- und Nachname>}
  
- Adresse: \textit{Bismarckstraße 156, 28205 Bremen}
+ Adresse: \textit{<Straße und Hausnummer, PLZ, Stadt>}
  
- Telefon: \textit{0157/81733962}
+ Telefon: \textit{<Nummer, unter der man Sie bei wichtigen Fragen schnell erreichen kann.>}
   
- E -Mail: \textit{lkarsten@stud.hs-bremen.de}
+ E -Mail: \textit{<mail@stud.hs-bremen.de>}
 
 
  \hfill \rule{7cm}{0.2mm}
@@ -594,7 +687,7 @@ Student:
  \hfill Unterschrift (Student\_in)
  
 \noindent
-Erstgutachter\_in / Betreuer\_in: \textit{ Prof. Dr. Lars Braubach } \\[0.2cm]
+Erstgutachter\_in / Betreuer\_in: \textit{<Prof.~Dr. Ernst>} \\[0.2cm]
 
  \hfill \rule{7cm}{0.2mm}
 
@@ -602,7 +695,7 @@ Erstgutachter\_in / Betreuer\_in: \textit{ Prof. Dr. Lars Braubach } \\[0.2cm]
 
 
 \noindent
-Zweitgutachter\_in: \textit{}
+Zweitgutachter\_in: \textit{<Prof.~Dr. Lustig>}
 
 
 
